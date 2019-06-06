@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Frontend part of last project for Flatiron School
 
 ## Available Scripts
 
