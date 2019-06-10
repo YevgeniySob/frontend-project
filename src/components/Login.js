@@ -1,20 +1,5 @@
 import React, { Component } from 'react'
-import { connect }          from 'react-redux'
-import TextField            from "@material-ui/core/TextField";
-import { withStyles } from '@material-ui/core/styles';
-// import PropTypes from 'prop-types';
-
-const styles = theme => ({
-	container: {
-		display: 'flex',
-		flexWrap: 'wrap',
-	},
-	textField: {
-		marginLeft: theme.spacing.unit,
-		marginRight: theme.spacing.unit,
-		width: 200,
-	}
-});
+import { connect }       from 'react-redux'
 
 class Login extends Component {
 	state = {
@@ -40,37 +25,54 @@ class Login extends Component {
 	};
 
 	render() {
-		const { classes } = this.props;
 		return (
-			<form className={classes.container} noValidate autoComplete="off" onSubmit={this.handleSubmit}>
-				<TextField
-					id="outlined-email-input"
-					label="Username"
-					className={classes.textField}
-					margin="normal"
-					type="email"
-					name="username"
-					autoComplete="email"
-					variant="outlined"
-					onChange={this.handleChange}
-					value={this.state.username}
-				/>
-				<TextField
-					id="outlined-password-input"
-					label="Password"
-					type="password"
-					name="password"
-					autoComplete="current-password"
-					variant="outlined"
-					className={classes.textField}
-					margin="normal"
-					onChange={this.handleChange}
-					value={this.state.password}
-				/>
-			</form>
+			<div className="ui middle aligned center aligned grid">
+				<div className="column">
+					<h2 className="ui teal image header">
+						<img src="assets/images/logo.png" className="image" />
+							<div className="content">
+								Log-in to your account
+							</div>
+					</h2>
+					<form className="ui large form">
+						<div className="ui stacked segment">
+							<div className="field">
+								<div className="ui left icon input">
+									<i className="user icon"></i>
+									<input type="text" name="email" placeholder="E-mail address"/>
+								</div>
+							</div>
+							<div className="field">
+								<div className="ui left icon input">
+									<i className="lock icon"></i>
+									<input type="password" name="password" placeholder="Password"/>
+								</div>
+							</div>
+							<div className="ui fluid large teal submit button">Login</div>
+						</div>
+
+						<div className="ui error message">
+
+						</div>
+
+					</form>
+
+					<div className="ui message">
+						New to us? <a href="#">Sign Up</a>
+					</div>
+				</div>
+			</div>
+
+
 		);
 	}
 }
+
+const mapStateToProps = state => {
+	return {
+
+	}
+};
 
 const mapDispatchToProps = dispatch => {
 	return {
@@ -78,4 +80,5 @@ const mapDispatchToProps = dispatch => {
 	}
 };
 
-export default connect(null, mapDispatchToProps)(withStyles(styles)(Login))
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
+

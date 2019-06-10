@@ -1,52 +1,38 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import React, { Component }                                       from 'react';
+import { connect }                                                from 'react-redux'
+import PropTypes                                                  from "prop-types";
 
-const styles = {
-	root: {
-		flexGrow: 1,
-	},
-	grow: {
-		flexGrow: 1,
-	},
-	menuButton: {
-		marginLeft: -12,
-		marginRight: 20,
-	},
-};
+class DesktopContainer extends Component {
+	state = {};
 
-class ButtonAppBar extends Component{
+
 	render() {
 
-		const { classes } = this.props;
 		return (
-			<div className={classes.root}>
-				<AppBar position="static">
-					<Toolbar>
-						<IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-							<MenuIcon />
-						</IconButton>
-						<Typography variant="h6" color="inherit" className={classes.grow}>
-							News
-						</Typography>
-						<Button color="inherit">Login</Button>
-						<Button color="inherit">SignUp</Button>
-					</Toolbar>
-				</AppBar>
+			<div className="ui top fixed borderless fluid huge menu">
+				<div className="ui container">
+					<a className="header item">Dont Mess</a>
+					<a className="active item">Reports</a>
+					<a className="ui dropdown item" tabIndex="0">
+						Dropdown <i className="dropdown icon" />
+						<div className="menu" tabIndex="-1">
+							<div className="item">Something</div>
+							<div className="ui divider"/>
+							<div className="item">Something</div>
+						</div>
+					</a>
+					<div className="right menu">
+						<a className="item">Login</a>
+						<a className="item">Signup</a>
+					</div>
+				</div>
 			</div>
 		);
 	}
 }
 
-ButtonAppBar.propTypes = {
-	classes: PropTypes.object.isRequired,
+DesktopContainer.propTypes = {
+	children: PropTypes.node
 };
 
 const mapDispatchToProps = dispatch => {
@@ -55,4 +41,4 @@ const mapDispatchToProps = dispatch => {
 	}
 };
 
-export default connect(null, mapDispatchToProps)(withStyles(styles)(ButtonAppBar))
+export default connect(null, mapDispatchToProps)(DesktopContainer)

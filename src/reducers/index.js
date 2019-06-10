@@ -1,12 +1,12 @@
 import { combineReducers } from "redux";
 import userReducer from './userReducer'
+import commentReducer from './commentReducer'
 import reportReducer from './reportReducer'
-import addressReducer from './addressReducer'
 
 const rootReducer = combineReducers({
 	userReducer,
 	reportReducer,
-	addressReducer
+	commentReducer
 });
 
 export default rootReducer

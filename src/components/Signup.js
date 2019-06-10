@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { connect }          from 'react-redux'
-import TextField            from "@material-ui/core/TextField";
-import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
 	container: {
@@ -18,15 +16,19 @@ const styles = theme => ({
 
 class Login extends Component {
 	state = {
-		username: '',
-		password: ''
+		form: {
+			username: '',
+			password: '',
+			email: '',
+		}
 	};
 
-	handleChange = e => {
-		console.log(this.state)
-		console.log(e.target.name)
+	handleChange = name => event => {
+		// console.log(this.state)
+		console.log(name)
+		console.log(event)
 		this.setState({
-			[e.target.name]: e.target.value
+			[name]: event.target.value
 		})
 	};
 
@@ -35,84 +37,16 @@ class Login extends Component {
 
 		this.setState({
 			username: '',
-			password: ''
+			password: '',
+			email: ''
 		})
 	};
 
 	render() {
-		const { classes } = this.props;
 		return (
-			<form className={classes.container} noValidate autoComplete="off" onSubmit={this.handleSubmit}>
-				<TextField
-					id="outlined-email-input"
-					label="Username"
-					className={classes.textField}
-					margin="normal"
-					type="email"
-					name="username"
-					autoComplete="email"
-					variant="outlined"
-					onChange={this.handleChange}
-					value={this.state.username}
-				/>
-				<TextField
-					id="outlined-password-input"
-					label="Password"
-					type="password"
-					name="password"
-					autoComplete="current-password"
-					variant="outlined"
-					className={classes.textField}
-					margin="normal"
-					onChange={this.handleChange}
-					value={this.state.password}
-				/>
-				<TextField
-					id="outlined-email-input"
-					label="Username"
-					className={classes.textField}
-					margin="normal"
-					type="email"
-					name="username"
-					autoComplete="email"
-					variant="outlined"
-					onChange={this.handleChange}
-					value={this.state.username}
-				/>
-				<TextField
-					id="outlined-password-input"
-					label="Password"
-					type="password"
-					name="password"
-					autoComplete="current-password"
-					variant="outlined"
-					className={classes.textField}
-					margin="normal"
-					onChange={this.handleChange}
-					value={this.state.password}
-				/>
-				<TextField
-					id="outlined-email-input"
-					label="Username"
-					className={classes.textField}
-					margin="normal"
-					type="email"
-					name="username"
-					autoComplete="email"
-					variant="outlined"
-					onChange={this.handleChange}
-					value={this.state.username}
-				/>
-				<TextField
-					id="outlined-helperText"
-					label="Helper text"
-					defaultValue="Default Value"
-					className={classes.textField}
-					helperText="Some important text"
-					margin="normal"
-					variant="outlined"
-				/>
-			</form>
+			<div>
+
+			</div>
 		);
 	}
 }
@@ -123,4 +57,4 @@ const mapDispatchToProps = dispatch => {
 	}
 };
 
-export default connect(null, mapDispatchToProps)(withStyles(styles)(Login))
+export default connect(null, mapDispatchToProps)(Login)
