@@ -1,20 +1,12 @@
-import React, { Component } from 'react'
-import { connect }          from 'react-redux'
-import { createReport }            from '../../../actions'
-import { withRouter}        from 'react-router-dom'
-import AddressForm from './AddressForm'
-import ReportDetails from './ReportDetails'
-import Success from './Success'
-import Confirmation from './Confirmation'
-
-const styles = {
-	form: {
-		// paddingTop: 500,
-		width: '400px',
-		marginTop: 200,
-		marginBottom: 0
-	}
-};
+import React, {Component}  from 'react'
+import {connect}           from 'react-redux'
+import {createReport}      from '../../../actions'
+import {withRouter}        from 'react-router-dom'
+import AddressForm         from './AddressForm'
+import ReportDetails       from './ReportDetails'
+import Success             from './Success'
+import Confirmation        from './Confirmation'
+import {fetch_address_api} from '../../../adapter/adapter'
 
 class ReportForm extends Component {
 
@@ -28,14 +20,18 @@ class ReportForm extends Component {
 		},
 		address: {
 			state: '',
-			city: "",
-			street: "",
+			city: '',
+			street: '',
 			zipcode: ''
 		},
 		geolocation: {
 			longitude: '',
 			latitude: ''
 		}
+	};
+
+	addressString = ({city, zipcode, state, street}) => {
+		return city + ', ' + zipcode + ', ' + street + ', ' + state
 	};
 
 	nextStep = () => {
@@ -52,55 +48,81 @@ class ReportForm extends Component {
 		})
 	};
 
-	handleChange = input => e => {
+	handleStateChange = input => (e, {value}) => {
 		this.setState({
-			[input]: e.target.value
+			...this.state,
+			address: {
+				...this.state.address,
+				[input]: value
+			}
+		})
+	};
+
+	handleDetailsChange = input => (e, test) => {
+	if (input === 'date') {
+		this.setState({
+			...this.state,
+			report: {
+				...this.state.report,
+				[input]: test.value
+			}
+		})
+	} else {
+			this.setState({
+				...this.state,
+				report: {
+					...this.state.report,
+					[input]: e.target.value
+				}
+			})
+		}
+	};
+
+	handleAddressChange = input => e => {
+		this.setState({
+			...this.state,
+			address: {
+				...this.state.address,
+				[input]: e.target.value
+			}
 		})
 	};
 
 	handleSubmit = e => {
 		e.preventDefault();
-		console.log('HANDLE SUBMIT', e.target);
+		const addressToSend = this.addressString(this.state.address);
+		fetch_address_api(addressToSend).then(data => {
+			const lat = data.results[0].locations[0].latLng.lat;
+			const log = data.results[0].locations[0].latLng.lng;
 
-		fetch('http://localhost:3000/login', {
-			method: 'POST',
-			headers: {
-				Accept: 'application/json',
-				'content-type': 'application/json'
-			},
-			body: JSON.stringify({
-				user: this.state
-			})
-		})
-			.then(r => r.json())
-			.then(data => {
-				const { token, user } = data;
-				localStorage.setItem('token', token);
-				this.props.login(user);
-				this.props.history.push("/")
-
-			});
-		this.setState({
-			username: '',
-			password: ''
+			this.setState({
+				...this.state,
+				geolocation: {
+					longitude: log,
+					latitude: lat
+				}
+			},() => this.props.createReport(this.state, this.props.user.id))
 		})
 	};
 
 	render(){
+		console.log("USER", this.props.user);
 		const { step } = this.state;
 		// eslint-disable-next-line default-case
 		switch(step) {
 			case 1:
 				return <ReportDetails
 					nextStep={this.nextStep}
-					handleChange = {this.handleChange}
+					handleChange = {this.handleDetailsChange}
+					// dateChange={this.handleDateChange}
 					values={this.state.report}
 				/>;
 			case 2:
 				return <AddressForm
 					nextStep={this.nextStep}
 					prevStep={this.prevStep}
-					handleChange = {this.handleChange}
+					handleChange = {this.handleAddressChange}
+					handleStateChange = {this.handleStateChange}
 					values={this.state.address}
 				/>;
 			case 3:
@@ -108,6 +130,7 @@ class ReportForm extends Component {
 					nextStep={this.nextStep}
 					prevStep={this.prevStep}
 					values={this.state}
+					handleSubmit={this.handleSubmit}
 				/>);
 			case 4:
 				return <Success />
@@ -115,4 +138,10 @@ class ReportForm extends Component {
 	}
 }
 
-export default connect(null, { createReport })(withRouter(ReportForm))
+const mapStateToProps = state => {
+	return {
+		user: state.userReducer.user
+	}
+};
+
+export default connect(mapStateToProps, { createReport })(withRouter(ReportForm))

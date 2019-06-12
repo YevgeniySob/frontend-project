@@ -4,7 +4,8 @@ import {
 	upvoteReport,
 	byState,
 	fetchingFalse,
-	fetchingTrue
+	fetchingTrue,
+	addReport
 } from './reportActions'
 
 import {
@@ -13,6 +14,10 @@ import {
 	logout,
 	signup
 } from './userActions'
+
+import {
+	createReport
+} from './ReportFormActions'
 
 export {
 	getReports,
@@ -24,5 +29,7 @@ export {
 	upvoteReport,
 	byState,
 	fetchingFalse,
-	fetchingTrue
+	fetchingTrue,
+	createReport,
+	addReport
 }

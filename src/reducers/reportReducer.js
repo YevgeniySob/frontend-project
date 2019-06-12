@@ -5,7 +5,8 @@ import {
 	DOWNVOTE,
 	BY_STATE,
 	FETCHING_TRUE,
-	FETCHING_FALSE
+	FETCHING_FALSE,
+	CREATE_REPORT
 } from '../actions/types'
 
 const initialState = {
@@ -20,6 +21,11 @@ export default function manageReports(state = initialState, action) {
 			return {
 				...state,
 
+			};
+		case CREATE_REPORT:
+			return {
+				...state,
+				reports: [...this.state.reports, action.payload]
 			};
 		case GET_REPORTS:
 			return {

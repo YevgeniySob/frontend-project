@@ -7,7 +7,8 @@ export const SIGNUP = 'SIGNUP';
 // report types
 export const REMOVE_REPORT = 'REMOVE_REPORT';
 export const CREATE_REPORT = 'CREATE_REPORT';
-export const GET_REPORTS= 'GET_REPORTS';
+export const GET_REPORTS = 'GET_REPORTS';
+export const ADD_REPORT = 'ADD_REPORT';
 export const UPVOTE = 'UPVOTE';
 export const DOWNVOTE = 'DOWNVOTE';
 export const BY_STATE = 'BY_STATE';

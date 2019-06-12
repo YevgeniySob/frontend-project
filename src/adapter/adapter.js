@@ -1,34 +1,34 @@
-const API_URL = "http://localhost:3000"
+// Geolocation API variables
+const GEO_API_KEY = 'yFBgBqKsiahMR4jx3qC3eif225ADnseM';
+const GEO_API_URL = 'http://www.mapquestapi.com/geocoding/v1/address?key=';
+const parameter = '&location=';
+const geo_url = GEO_API_URL + GEO_API_KEY + parameter;
 
-const get = url => {
-	return fetch(url).then(r => r.json())
+// Main Api variables
+const API_URL = 'http://localhost:3000/';
+// const parameters = '?id=';
+export const headers = {
+	Accept: 'application/json',
+	"Content-Type": "application/json"
 };
 
-const adapter = {
-	getReports: (state) => get(`${API_URL}/report_by_state?id=${staate}`)
+
+// method: 'POST',
+// 	headers: {
+// 	Accept: 'application/json',
+// 		'content-type': 'application/json'
+// },
+// body: JSON.stringify({
+// 	user: this.state
+// })
+
+
+// Geolocation Api functions
+export const fetch_address_api = (address) => {
+	return fetch(geo_url + address).then(r => r.json())
 };
 
-export const getReports = reports => {
-
-	return {
-		type: GET_REPORTS,
-		payload: {
-			reports
-		}
-	}
-};
-import {GET_REPORTS} from "../actions/types";
-
-export const getReports = (state) => {
-	return (dispatch) => {
-		return adapter.getReports(state)
-			.then(reports => {
-				dispatch({
-					type:    GET_REPORTS,
-					payload: {
-						reports
-					}
-				})
-			})
-	}
+// Main API functions
+export const fetch_api = route => {
+	return fetch(API_URL + route).then(r => r.json())
 };

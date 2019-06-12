@@ -1,18 +1,16 @@
-import React, { Component } from 'react';
-import { connect }          from 'react-redux'
-import PropTypes            from "prop-types";
-import { Item }             from 'semantic-ui-react'
-import Logo2                from '../png/Logo2.png'
-import {Link}                               from "react-router-dom";
-import { logout } from '../actions'
+import React, {Component, Fragment} from 'react';
+import { connect }                  from 'react-redux'
+import PropTypes                    from "prop-types";
+import { Item }                     from 'semantic-ui-react'
+import Logo2                        from '../png/Logo2.png'
+import {Link}                       from "react-router-dom";
+import { logout }                   from '../actions'
 
 class DesktopContainer extends Component {
-	state = {
-
-	};
+	state = {};
 
 	handleLogout = () => {
-		this.props.logout()
+		this.props.logout();
 		localStorage.removeItem('token');
 	};
 
@@ -20,7 +18,9 @@ class DesktopContainer extends Component {
 		return (
 			<div className="ui top fixed borderless fluid huge menu">
 				<div className="ui container">
-					<Item.Image size='tiny' src={Logo2} />
+					<Link to={'/'}>
+						<Item.Image size='tiny' src={Logo2} />
+					</Link>
 					{/*<a className="header item">Dont Mess</a>*/}
 					{/*<a className="active item">Reports</a>*/}
 					{/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
@@ -32,24 +32,22 @@ class DesktopContainer extends Component {
 							<div className="item">Something</div>
 						</div>
 					</a>
+					<div className="right menu">
 					{!this.props.user ?
-						(
-							<div className="right menu">
+						(<Fragment>
 							<Link className={'item'} to={'/login'}>
 								Login
 							</Link>
 							<Link className={'item'} to={'/signup'}>
 								Signup
 							</Link>
-						</div>
-						)
+						</Fragment>)
 						:
-						(
-							<Link className={'item'} onClick={this.handleLogout} to={'/'}>
-								Logout
-							</Link>
-						)
+						(<Link className={'item'} onClick={this.handleLogout} to={'/'}>
+							Logout
+						</Link>)
 					}
+					</div>
 				</div>
 			</div>
 		);

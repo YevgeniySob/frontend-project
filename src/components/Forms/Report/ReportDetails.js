@@ -1,68 +1,81 @@
-import React, { Component } from 'react';
-import {Form, Button, Grid} from 'semantic-ui-react';
-import {Link}               from "react-router-dom";
+import React, {Component}             from 'react';
+import {Form, Button, Grid, TextArea} from 'semantic-ui-react';
+import {withRouter}             from "react-router-dom";
+import {signup}                       from "../../../actions";
+import {connect}                      from 'react-redux'
+import {DateInput}                    from 'semantic-ui-calendar-react';
 
 const styles = {
 	form: {
 		// paddingTop: 500,
-		width: '400px',
-		marginTop: 200,
+		width:        '400px',
+		marginTop:    200,
 		marginBottom: 0
 	}
 };
 
-class ReportDetails extends Component{
+class ReportDetails extends Component {
 	saveAndContinue = (e) => {
 		e.preventDefault();
 		this.props.nextStep();
 	};
 
-	back  = (e) => {
-		e.preventDefault();
-		this.props.prevStep();
+	handleCancelClick = () => {
+		this.props.history.push("/")
 	};
 
-	render(){
-		const { values } = this.props;
-		return(
-			<Grid centered >
+	render() {
+		const {values} = this.props;
+		return (
+			<Grid centered>
 				<div className="ui middle aligned center aligned grid" style={styles.form}>
 					<div className="column">
 						<h2 className="ui teal image header">
 							{/*<img src="assets/images/logo.png" className="image" />*/}
 							<div className="content">
-								Log-in to your account
+								Incident details
 							</div>
 						</h2>
-							<Form color='blue' >
-								<h1 className="ui centered">Enter Personal Details</h1>
-								<Form.Field>
-									<label>Age</label>
-									<input placeholder='Age'
-									       onChange={this.props.handleChange('age')}
-									       defaultValue={values.age}
-									/>
-								</Form.Field>
-								<Form.Field>
-									<label>City</label>
-									<input placeholder='City'
-									       onChange={this.props.handleChange('city')}
-									       defaultValue={values.city}
-									/>
-								</Form.Field>
-								<Form.Field>
-									<label>Country</label>
-									<input placeholder='Country'
-									       onChange={this.props.handleChange('country')}
-									       defaultValue={values.country}
-									/>
-								</Form.Field>
-								<Button onClick={this.back}>Back</Button>
-								<Button onClick={this.saveAndContinue}>Save And Continue </Button>
-							</Form>
-						<div className="ui message">
-							New to us? <Link to={'/signup'}>Sign Up</Link>
-						</div>
+						<Form color='blue'>
+							{/*<h1 className="ui centered">Incident details</h1>*/}
+							<Form.Field>
+								<label>Title</label>
+								<input placeholder='Give it a title'
+								       onChange={this.props.handleChange('title')}
+								       defaultValue={values.title}
+								/>
+							</Form.Field>
+							<Form.Field>
+								<label>Description</label>
+								<TextArea
+									placeholder='Tell us more'
+									style={{minHeight: 100}}
+									onChange={this.props.handleChange('description')}
+									defaultValue={values.description}
+								/>
+							</Form.Field>
+							<Form.Field>
+								<label>Evidence</label>
+								<input placeholder='Image or video will be perfect'
+								       onChange={this.props.handleChange('image')}
+								       defaultValue={values.image}
+								/>
+							</Form.Field>
+							<Form.Field>
+								<label>Date of the incident</label>
+								<DateInput
+									name="date"
+									placeholder="Date"
+									value={values.date}
+									iconPosition="left"
+									onChange={this.props.handleChange('date')}
+								  animation={'scale'}
+									dateFormat={'YYYY-MM-DD'}
+								/>
+							</Form.Field>
+							<Button onClick={this.handleCancelClick}>Cancel</Button>
+							<Button onClick={this.saveAndContinue}>Save And Continue </Button>
+						</Form>
 					</div>
 				</div>
 			</Grid>
@@ -70,4 +83,4 @@ class ReportDetails extends Component{
 	}
 }
 
-export default ReportDetails;
+export default connect(null, {signup})(withRouter(ReportDetails));

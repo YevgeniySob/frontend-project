@@ -3,6 +3,7 @@ import { Grid, Button, Image, Dropdown } from 'semantic-ui-react'
 import { connect }                      from 'react-redux'
 import { stateList } from '../state'
 import { byState, fetchingTrue, fetchingFalse } from '../actions'
+import {Link}                               from "react-router-dom";
 
 class NewReportBox extends Component {
 
@@ -19,9 +20,7 @@ class NewReportBox extends Component {
 		return (
 			<Grid.Column>
 				<Grid.Row>
-					<Image src={'https://picsum.photos/id/237/300/50'}>
-
-					</Image>
+					<Image src={'https://picsum.photos/id/237/300/50'} />
 				</Grid.Row>
 				<Grid.Row>
 					Search By State:
@@ -35,11 +34,12 @@ class NewReportBox extends Component {
 					/>
 				</Grid.Row>
 				<Grid.Row>
-					<Button fluid inverted color='red'>
-						New Report
-					</Button>
+					<Link to={'/new-report'}>
+						<Button fluid inverted color='red'>
+							New Report
+						</Button>
+					</Link>
 				</Grid.Row>
-
 			</Grid.Column>
 		);
 	}

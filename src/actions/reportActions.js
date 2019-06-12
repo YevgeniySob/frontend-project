@@ -1,8 +1,7 @@
 import {
-	// ADD_REPORT,
 	// REMOVE_REPORT,
 	GET_REPORTS,
-	// CREATE_REPORT,
+	ADD_REPORT,
 	UPVOTE,
 	DOWNVOTE,
 	BY_STATE,
@@ -28,6 +27,14 @@ import {
 // 		}
 // 	}
 // };
+
+export const addReport = report => {
+	return {
+		type: ADD_REPORT,
+		payload: report
+	}
+};
+
 export const getReports = () => {
 
 	return (dispatch) => {
@@ -60,7 +67,7 @@ export const upvoteReport = reportId => {
 
 export const byState = state => {
 	return (dispatch) => {
-		dispatch(fetchingTrue)
+		dispatch(fetchingTrue);
 		return fetch(`http://localhost:3000/report_by_state?state=${state}`)
 			.then(r => r.json())
 			.then(reports => {

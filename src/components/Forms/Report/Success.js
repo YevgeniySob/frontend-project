@@ -1,11 +1,30 @@
-import React, { Component } from 'react';
+import React, { Component }           from 'react';
+import { Grid } from "semantic-ui-react";
+
+const styles = {
+	form: {
+		// paddingTop: 500,
+		width: '400px',
+		marginTop: 200,
+		marginBottom: 0
+	}
+};
 
 class Success extends Component{
 	render(){
 		return(
-			<div>
-				<h1 className="ui centered">Details Successfully Saved</h1>
-			</div>
+			<Grid centered >
+				<div className="ui middle aligned center aligned grid" style={styles.form}>
+					<div className="column">
+						<h2 className="ui teal image header">
+							{/*<img src="assets/images/logo.png" className="image" />*/}
+							<div className="content">
+								Details are Successfully saved
+							</div>
+						</h2>
+					</div>
+				</div>
+			</Grid>
 		)
 	}
 }

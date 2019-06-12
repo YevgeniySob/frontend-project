@@ -17,7 +17,6 @@ const LoaderExampleLoader = () => (
 
 class ReportContainer extends Component {
 	render() {
-		console.log('FETCHING STATE OF REPORT CONTAINER: ', this.props.fetching)
 		return (
 			<div>
 				{this.props.reports.length === 0 && <div>There are no reports in your state yet</div>}

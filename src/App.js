@@ -16,7 +16,7 @@ class App extends Component {
     if (token && !this.props.user) {
       // how can we make this work?
       // this.props.autoLogin()
-      console.log('should hit this');
+      // console.log('should hit this');
       fetch('http://localhost:3000/auto_login', {
         headers: {
           Authorization: token

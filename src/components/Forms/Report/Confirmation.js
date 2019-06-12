@@ -12,10 +12,10 @@ const styles = {
 };
 
 class Confirmation extends Component {
-	saveAndContinue = (e) => {
-		e.preventDefault();
-		this.props.nextStep();
-	};
+	// saveAndContinue = (e) => {
+	// 	e.preventDefault();
+	// 	this.props.nextStep();
+	// };
 
 	back = (e) => {
 		e.preventDefault();
@@ -32,12 +32,11 @@ class Confirmation extends Component {
 						<h2 className="ui teal image header">
 							{/*<img src="assets/images/logo.png" className="image" />*/}
 							<div className="content">
-								Log-in to your account
+								Confirm your Details
 							</div>
 						</h2>
 						<div>
-							<h1 className="ui centered">Confirm your Details</h1>
-							<p>Click Confirm if the following details have been correctly entered</p>
+							<p>Click Confirm if the following details have been correctly entered. You can go back and edit.</p>
 							<List>
 								<List.Item>
 									{/*<List.Icon name='users' />*/}
@@ -50,7 +49,6 @@ class Confirmation extends Component {
 									<List.Content>Image: {image}            </List.Content>
 								</List.Item>
 								<List.Item>
-									<List.Icon name='calendar'/>
 									<List.Content>Date: {date}</List.Content>
 								</List.Item>
 								<List.Item>
@@ -66,12 +64,8 @@ class Confirmation extends Component {
 									<List.Content>Zipcode: {zipcode} </List.Content>
 								</List.Item>
 							</List>
-
 							<Button onClick={this.back}>Back</Button>
-							<Button onClick={this.saveAndContinue}>Confirm</Button>
-						</div>
-						<div className="ui message">
-							New to us? <Link to={'/signup'}>Sign Up</Link>
+							<Button onClick={this.props.handleSubmit}>Confirm</Button>
 						</div>
 					</div>
 				</div>
