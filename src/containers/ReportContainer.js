@@ -4,6 +4,7 @@ import {connect}          from 'react-redux'
 import LazyLoad           from 'react-lazyload'
 import { Dimmer, Loader, Image, Segment } from 'semantic-ui-react'
 
+
 const LoaderExampleLoader = () => (
 	<Segment>
 		<Dimmer active inverted>
@@ -16,8 +17,10 @@ const LoaderExampleLoader = () => (
 
 class ReportContainer extends Component {
 	render() {
+		console.log('FETCHING STATE OF REPORT CONTAINER: ', this.props.fetching)
 		return (
 			<div>
+				{this.props.reports.length === 0 && <div>There are no reports in your state yet</div>}
 				{this.props.reports.map(report => (
 					<LazyLoad
 						key={report.id}
@@ -35,13 +38,11 @@ class ReportContainer extends Component {
 }
 
 const mapStateToProps = state => {
+	console.log(state)
 	return {
-		reports: state.reportReducer.reports
+		reports: state.reportReducer.reports,
+		fetching: state.reportReducer.fetching
 	}
 };
 
-const mapDispatchToProps = dispatch => {
-	return {}
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ReportContainer)
+export default connect(mapStateToProps)(ReportContainer)

@@ -1,57 +1,65 @@
 import {
-	ADD_REPORT,
 	REMOVE_REPORT,
-	CREATE_REPORT,
 	GET_REPORTS,
 	UPVOTE,
-	DOWNVOTE
+	DOWNVOTE,
+	BY_STATE,
+	FETCHING_TRUE,
+	FETCHING_FALSE
 } from '../actions/types'
 
 const initialState = {
-	reports: []
+	reports: [],
+	fetching: false
 };
 
 export default function manageReports(state = initialState, action) {
 	let reports;
 	switch (action.type) {
-		case ADD_REPORT:
-			return {
-
-			};
 		case REMOVE_REPORT:
 			return {
 				...state,
 
 			};
-		case CREATE_REPORT:
-			return {
-				...state,
-				reports: [...state.reports, action.payload]
-			};
 		case GET_REPORTS:
 			return {
 				...state,
-				reports: action.payload.reports
+				reports: action.payload
 			};
 		case UPVOTE:
-			console.log("UP:", action.payload)
 			reports = state.reports.map(report => {
 				return report.id === action.payload ? {...report, votes: ++report.votes} : report
 			});
 
 			return {
+				...state,
 				reports
 			};
 		case DOWNVOTE:
-			console.log("DOWN:", action.payload)
 			reports = state.reports.map(report => {
 				return report.id === action.payload ? {...report, votes: --report.votes} : report
 			});
 
 			return {
+				...state,
 				reports
 			};
+		case BY_STATE:
 
+			return {
+				...state,
+				reports: action.payload
+			};
+		case FETCHING_FALSE:
+			return {
+				...state,
+				fetching: false
+			};
+		case FETCHING_TRUE:
+			return {
+				...state,
+				fetching: true
+			};
 		default:
 			return state
 	}

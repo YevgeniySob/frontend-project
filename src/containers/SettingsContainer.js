@@ -1,13 +1,12 @@
 import React, { Component, Fragment } from "react";
-import { Header, Popup, Grid, Image, Icon } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 import NewReportBox from '../components/NewReportBox'
 const styles = {
 	mainGrid: {
 		margin: 0
 	},
 	box: {
-		marginBottom: 30,
-		boxShadow: 3
+		marginBottom: 30
 	}
 };
 
@@ -15,16 +14,16 @@ export default class SettingsContainer extends Component {
 	render() {
 		return (
 			<Fragment>
-				<Grid.Row styles={styles.box}>
+				<Grid.Row style={styles.box}>
 
-						<NewReportBox />
+						<NewReportBox fetching={this.props.fetching}/>
 
 				</Grid.Row>
 
-				<Grid.Row styles={styles.box}>
+				<Grid.Row style={styles.box}>
 					Box 2
 				</Grid.Row>
-				<Grid.Row styles={styles.box}>
+				<Grid.Row style={styles.box}>
 					Box 3
 				</Grid.Row>
 			</Fragment>

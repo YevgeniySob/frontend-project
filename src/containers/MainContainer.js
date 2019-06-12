@@ -19,30 +19,18 @@ const styles = {
 
 class MainContainer extends Component {
 
-	state = {
-		fetching: true
-	};
-
 	componentDidMount() {
-		console.log('FETCHING...');
-		fetch('http://localhost:3000/reports')
-			.then(r => r.json())
-			.then(reports => {
-				this.props.getReports(reports)
-				this.setState({
-					fetching: false
-				})
-			}
-			)
+		this.props.getReports()
 	}
 
 	render() {
+		console.log('MAIN CONTAINER FETCHING:', this.props.fetching)
 		return (
 			<Fragment>
 				<Container  style={{marginTop: 100, width: '70%'}}>
 					<Grid stackable padded style={{width: "100%", paddingRight: 0}}>
 						<Grid.Column only="computer" width={10} style={{padding: 0}}>
-							{!this.state.fetching && <ReportContainer />}
+							{!this.props.fetching && <ReportContainer  />}
 
 						</Grid.Column>
 						<Grid.Column only="computer" width={6} style={styles.settings}>
@@ -55,10 +43,10 @@ class MainContainer extends Component {
 	}
 }
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
 	return {
-		getReports: (reports) => dispatch(getReports(reports))
+		fetching: state.reportReducer.fetching
 	}
 };
 
-export default connect(null, mapDispatchToProps)(MainContainer)
+export default connect(mapStateToProps, { getReports })(MainContainer)

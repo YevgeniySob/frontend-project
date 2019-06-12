@@ -2,7 +2,7 @@ import React, { PureComponent }             from 'react'
 import { connect }                          from 'react-redux'
 import { Header, Popup, Grid, Image, Icon } from 'semantic-ui-react'
 import LazyLoad                             from 'react-lazyload'
-import {Link}                               from "react-router-dom";
+// import {Link}                               from "react-router-dom";
 import { downvoteReport, upvoteReport } from '../actions/reportActions'
 
 
@@ -26,21 +26,34 @@ class ReportCard extends PureComponent {
 
 	state = {
 		user: {
-			days: '',
-			full_name: ''
+			userCreated:     '',
+			reportSubmitted: '',
+			full_name:       '',
+			content:         ''
 		}
 	};
 
 	userDate = date => {
 		let date1 = new Date();
-		let date2 = new Date(date.slice(0, 10))
-		const diffTime = date1.getTime() - date2.getTime()
+		let date2 = new Date(date.slice(0, 10));
+		const diffTime = date1.getTime() - date2.getTime();
 		const diff = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 		this.changeDate(diff)
 	};
 
+	reportDate = date => {
+		// debugger
+		let date1 = new Date();
+		let date2 = new Date(date);
+		const diffTime = date1.getTime() - date2.getTime();
+		const diff = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+		this.setState(prevState => ({
+			user: { ...prevState.user, reportSubmitted: diff}
+		}));
+	};
+
 	handleCardClick = e => {
-		const id = e.target;
+		// const id = e.target;
 		// console.log(id)
 	};
 
@@ -76,7 +89,7 @@ class ReportCard extends PureComponent {
 
 	changeDate = days => {
 		this.setState(prevState => ({
-			user: { ...prevState.user, days: days}
+			user: { ...prevState.user, userCreated: days}
 		}));
 	};
 
@@ -88,13 +101,14 @@ class ReportCard extends PureComponent {
 
 	componentDidMount() {
 		this.userDate(this.props.report.user.created_at);
+		this.reportDate(this.props.report.date);
 		this.setFullName(this.props.report.user.first_name, this.props.report.user.last_name)
 	}
 
 	render() {
 
 		// console.log("RENDERING", this.state);
-		const { id: reportId, title, votes, description, user: { id, reports_num, username, image}, comments} = this.props.report
+		const { id: reportId, title, votes, description, user: { id, reports_num, username, image}, comments} = this.props.report;
 
 		return (
 			<Grid style={styles.mainGrid} celled>
@@ -120,14 +134,14 @@ class ReportCard extends PureComponent {
 						<Grid.Row>
 							<Grid.Row>
 								<Popup
-									content={'Has ' + reports_num + ' reports'}
+									content={'Total reports: ' + reports_num + " - " + username + " joined: " + this.state.user.userCreated + ' days ago'}
 									key={id}
 									header={this.state.user.full_name}
 									trigger={<Image src={'http://www.free-avatars.com/data/media/92/animated_homer_simpson.gif'} avatar />}
 								/>
-
 								<span>
-									{username}  User joined: {this.state.user.days} days ago
+									Report submitted: { this.state.user.reportSubmitted }
+									{this.state.user.reportSubmitted === 1 ? ' day ago' : ' days ago'}
 								</span>
 							</Grid.Row>
 							<Grid.Row>

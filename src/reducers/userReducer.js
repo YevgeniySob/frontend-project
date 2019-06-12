@@ -1,27 +1,28 @@
 import {
-	ADD_CURRENT_USER,
-	REMOVE_CURRENT_USER
+	LOGIN,
+	LOGOUT,
+	SIGNUP
 } from '../actions/types'
 
 const initialState = {
-	currentUser: null,
-
+	user: null
 };
 
 export default function manageUser(state = initialState, action) {
 	switch (action.type) {
-		case ADD_CURRENT_USER:
+		case LOGIN:
 			return {
-				...state,
-				currentUser: action.user
+				user: action.payload
 			};
-		case REMOVE_CURRENT_USER:
+		case LOGOUT:
 			return {
-				...state,
-				currentUser: null
+				user: null
+			};
+		case SIGNUP:
+			return {
+				user: action.payload
 			};
 		default:
-				return state
+			return state
 	}
 }
-
