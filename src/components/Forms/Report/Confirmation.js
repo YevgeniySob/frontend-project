@@ -5,8 +5,8 @@ import {Link}               from "react-router-dom";
 const styles = {
 	form: {
 		// paddingTop: 500,
-		width: '400px',
-		marginTop: 200,
+		width:        '400px',
+		marginTop:    200,
 		marginBottom: 0
 	}
 };
@@ -23,7 +23,7 @@ class Confirmation extends Component {
 	};
 
 	render() {
-		const {values: {report: {title, description, image, date}, address: {city, state, street, zipcode}}} = this.props;
+		const {values:  {title, description, date, city, state, street, zipcode}} = this.props;
 
 		return (
 			<Grid centered>
@@ -45,9 +45,9 @@ class Confirmation extends Component {
 								<List.Item>
 									<List.Content>Description: {description}</List.Content>
 								</List.Item>
-								<List.Item>
-									<List.Content>Image: {image}            </List.Content>
-								</List.Item>
+								{/*<List.Item>*/}
+								{/*	<List.Content>Image: {image}            </List.Content>*/}
+								{/*</List.Item>*/}
 								<List.Item>
 									<List.Content>Date: {date}</List.Content>
 								</List.Item>

@@ -12,22 +12,16 @@ class ReportForm extends Component {
 
 	state = {
 		step: 1,
-		report: {
-			title: '',
-			description: '',
-			image: '',
-			date: '',
-		},
-		address: {
-			state: '',
-			city: '',
-			street: '',
-			zipcode: ''
-		},
-		geolocation: {
-			longitude: '',
-			latitude: ''
-		}
+		title:   '',
+		description: '',
+		image: '',
+		date: '',
+		state: '',
+		city: '',
+		street: '',
+		zipcode: '',
+		longitude: '',
+		latitude: ''
 	};
 
 	addressString = ({city, zipcode, state, street}) => {
@@ -50,63 +44,50 @@ class ReportForm extends Component {
 
 	handleStateChange = input => (e, {value}) => {
 		this.setState({
-			...this.state,
-			address: {
-				...this.state.address,
 				[input]: value
-			}
 		})
 	};
 
 	handleDetailsChange = input => (e, test) => {
-	if (input === 'date') {
-		this.setState({
-			...this.state,
-			report: {
-				...this.state.report,
-				[input]: test.value
-			}
-		})
-	} else {
+		if (input === 'date') {
 			this.setState({
-				...this.state,
-				report: {
-					...this.state.report,
-					[input]: e.target.value
-				}
+					[input]: test.value
+			})
+		} else {
+			this.setState({
+				[input]: e.target.value
 			})
 		}
 	};
 
 	handleAddressChange = input => e => {
 		this.setState({
-			...this.state,
-			address: {
-				...this.state.address,
 				[input]: e.target.value
-			}
+		})
+	};
+
+	onDrop = picture => {
+		this.setState({
+				image: picture[0]
 		})
 	};
 
 	handleSubmit = e => {
 		e.preventDefault();
-		const addressToSend = this.addressString(this.state.address);
+		const addressToSend = this.addressString(this.state);
 		fetch_address_api(addressToSend).then(data => {
 			const lat = data.results[0].locations[0].latLng.lat;
 			const log = data.results[0].locations[0].latLng.lng;
 
 			this.setState({
-				...this.state,
-				geolocation: {
 					longitude: log,
 					latitude: lat
-				}
 			},() => this.props.createReport(this.state, this.props.user.id))
 		})
 	};
 
 	render(){
-		console.log("USER", this.props.user);
+		console.log(this.state);
 		const { step } = this.state;
 		// eslint-disable-next-line default-case
 		switch(step) {
@@ -114,8 +95,8 @@ class ReportForm extends Component {
 				return <ReportDetails
 					nextStep={this.nextStep}
 					handleChange = {this.handleDetailsChange}
-					// dateChange={this.handleDateChange}
-					values={this.state.report}
+					onDrop={this.onDrop}
+					values={this.state}
 				/>;
 			case 2:
 				return <AddressForm
@@ -123,7 +104,7 @@ class ReportForm extends Component {
 					prevStep={this.prevStep}
 					handleChange = {this.handleAddressChange}
 					handleStateChange = {this.handleStateChange}
-					values={this.state.address}
+					values={this.state}
 				/>;
 			case 3:
 				return (<Confirmation

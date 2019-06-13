@@ -1,9 +1,10 @@
 import React, {Component}             from 'react';
 import {Form, Button, Grid, TextArea} from 'semantic-ui-react';
-import {withRouter}             from "react-router-dom";
+import {withRouter}                   from "react-router-dom";
 import {signup}                       from "../../../actions";
 import {connect}                      from 'react-redux'
 import {DateInput}                    from 'semantic-ui-calendar-react';
+import ImageUploader                  from 'react-images-upload';
 
 const styles = {
 	form: {
@@ -56,10 +57,16 @@ class ReportDetails extends Component {
 							</Form.Field>
 							<Form.Field>
 								<label>Evidence</label>
-								<input placeholder='Image or video will be perfect'
-								       onChange={this.props.handleChange('image')}
-								       defaultValue={values.image}
+								<ImageUploader
+									withIcon={true}
+									buttonText='Choose images'
+									onChange={this.props.onDrop}
+									imgExtension={['.jpg', '.gif', '.png', '.gif', '.jpeg']}
 								/>
+								{/*<input placeholder='Image or video will be perfect'*/}
+								{/*       onChange={this.props.handleChange('image')}*/}
+								{/*       defaultValue={values.image}*/}
+								{/*/>*/}
 							</Form.Field>
 							<Form.Field>
 								<label>Date of the incident</label>
@@ -69,7 +76,7 @@ class ReportDetails extends Component {
 									value={values.date}
 									iconPosition="left"
 									onChange={this.props.handleChange('date')}
-								  animation={'scale'}
+									animation={'scale'}
 									dateFormat={'YYYY-MM-DD'}
 								/>
 							</Form.Field>

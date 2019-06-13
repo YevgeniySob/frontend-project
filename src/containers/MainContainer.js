@@ -24,7 +24,6 @@ class MainContainer extends Component {
 	}
 
 	render() {
-		console.log('MAIN CONTAINER FETCHING:', this.props.fetching)
 		return (
 			<Fragment>
 				<Container  style={{marginTop: 100, width: '70%'}}>

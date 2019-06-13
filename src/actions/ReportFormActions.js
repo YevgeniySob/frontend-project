@@ -1,32 +1,32 @@
 import {CREATE_REPORT}                 from './types'
 import {fetchingTrue, fetchingFalse} from './reportActions'
-import {fetch_api, headers}          from '../adapter/adapter'
+import {adapter}          from '../adapter/adapter'
 
 export const createReport = (report, userId) => {
-	debugger;
 	return (dispatch) => {
 		dispatch(fetchingTrue);
-		return fetch('http://localhost:3000/new_report', {
-			method:  'POST',
-			headers: {
-				Accept: 'application/json',
-				"Content-Type": "application/json"
-			},
-			body: JSON.stringify({
-				id: userId,
-				report
-			})
+		const event = new FormData();
+		for(let name in report){
+			event.append(name, report[name]);
+		}
+		event.append('id', userId)
+		return fetch(`http://localhost:3000/new_report`, {
+			method: 'POST',
+			body:   event
 		})
 			.then(r => r.json())
-			.then(report => {
-				console.log(report)
-				// dispatch({
-				// 	type: CREATE_REPORT,
-				// 	payload: report
-				// });
-				dispatch(fetchingFalse)
-			})
+			.then(console.log)
+		// adapter.createReport(event, userId)
+		// 	.then(report => {
+		// 		console.log('SUCCESS!!!!!!!!!!!!!!!!!!!!!:', report);
+		// 		// dispatch({
+		// 		// 	type: CREATE_REPORT,
+		// 		// 	payload: report
+		// 		// });
+		// 		dispatch(fetchingFalse)
+		// 	})
 	}
 	// we want fetch
 	// dispatch all the goods
 };
+

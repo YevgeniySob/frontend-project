@@ -42,7 +42,6 @@ class ReportCard extends PureComponent {
 	};
 
 	reportDate = date => {
-		// debugger
 		let date1 = new Date();
 		let date2 = new Date(date);
 		const diffTime = date1.getTime() - date2.getTime();
@@ -107,7 +106,7 @@ class ReportCard extends PureComponent {
 
 	render() {
 
-		// console.log("RENDERING", this.state);
+		console.log("RENDERING", this.state);
 		const { id: reportId, title, votes, description, user: { id, reports_num, username, image}, comments} = this.props.report;
 
 		return (

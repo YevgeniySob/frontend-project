@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "cloudinary-react": "^1.1.1",
     "gulp": "^4.0.2",
     "prop-types": "latest",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-images-upload": "^1.2.6",
     "react-lazyload": "^2.6.1",
     "react-modal": "^3.8.1",
     "react-redux": "^7.0.3",
@@ -17,6 +19,7 @@
     "semantic-ui-calendar-react": "^0.15.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.87.1",
+    "spin.js": "^4.0.0",
     "typeface-roboto": "0.0.54"
   },
   "scripts": {
