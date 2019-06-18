@@ -1,8 +1,14 @@
 import {
 	LOGIN,
 	SIGNUP,
-	LOGOUT
+	LOGOUT,
+	UPDATE_GEOLOCATION,
+	GETTING_CURRENT_STATE
 } from './types'
+
+import {
+	byState
+} from "./reportActions";
 
 export const login = (user) => {
 	console.log('ACTION', user);
@@ -14,7 +20,7 @@ export const login = (user) => {
 	// dispatch all th4e goods
 };
 
-export const signup = (user) => {
+export const signup = user => {
 	return {
 		type: SIGNUP,
 		payload: user
@@ -25,7 +31,7 @@ export const logout = () => ({
 		type: LOGOUT
 });
 
-export const autoLogin = (user) => {
+export const autoLogin = user => {
 	// fetch('localhost:3000/auto_login')
 	//   .then(r => r.json())
 	//   .then(data => {
@@ -37,3 +43,20 @@ export const autoLogin = (user) => {
 		payload: user
 	}
 };
+
+export const updateGeolocation = (lat, log, state) => {
+	return dispatch => {
+		dispatch({
+			type: UPDATE_GEOLOCATION,
+			payload: {
+				lat, log, state
+			}
+		});
+		dispatch(byState(state))
+	}
+
+};
+
+export const getUserState = () => ({
+	type: GETTING_CURRENT_STATE
+});

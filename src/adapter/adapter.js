@@ -5,7 +5,7 @@ const parameter   = '&location=';
 const geo_url     = GEO_API_URL + GEO_API_KEY + parameter;
 
 // Main Api variables
-const API_URL        = 'http://localhost:3000/';
+const API_URL        = 'http://localhost:3000';
 // const parameters = '?id=';
 export const headers = {
 	Accept:         'application/json',
@@ -21,7 +21,7 @@ const post = (url, params) => {
 };
 
 // Geolocation Api functions
-export const fetch_address_api = (address) => {
+export const fetch_address_api = address => {
 	return fetch(geo_url + address).then(r => r.json())
 };
 
@@ -38,7 +38,14 @@ const createUser = (attributes) => {
 	return post(`${API_URL}/users`, attributes)
 };
 
+export const newComment = (attributes) => {
+	return post(`${API_URL}/add_comment`, attributes)
+};
+
 export const adapter = {
 	createReport,
-	createUser
+	createUser,
+	fetch_address_api,
+	newComment
 };
+

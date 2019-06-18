@@ -1,39 +1,48 @@
-import React, {Component, Fragment} from 'react'
-import { connect }        from 'react-redux'
-import { getReports }       from '../actions'
-import ReportContainer from './ReportContainer'
-import SettingsContainer from './SettingsContainer'
-import { Container, Grid } from "semantic-ui-react";
+import React, {Component, Fragment}             from 'react'
+import {connect}                                from 'react-redux'
+import {getReports, byState, updateGeolocation} from '../actions'
+import ReportContainer                          from './ReportContainer'
+import SettingsContainer                        from './SettingsContainer'
+import {Container, Grid}                        from "semantic-ui-react";
+import {RingLoader,CircleLoader}                             from "react-spinners";
+// import {userGeolocation}                        from '../UserGeolocation'
 
 const styles = {
 	noMargin: {
 		margin: 0
 	},
 	settings: {
-		paddingLeft: 24,
-		paddingRight: 0,
-		paddingTop: 0,
+		paddingLeft:   24,
+		paddingRight:  0,
+		paddingTop:    0,
 		paddingBottom: 0
 	}
 };
 
 class MainContainer extends Component {
 
-	componentDidMount() {
-		this.props.getReports()
-	}
-
 	render() {
 		return (
 			<Fragment>
-				<Container  style={{marginTop: 100, width: '70%'}}>
+				<Container style={{marginTop: 100, width: '70%'}}>
 					<Grid stackable padded style={{width: "100%", paddingRight: 0}}>
 						<Grid.Column only="computer" width={10} style={{padding: 0}}>
-							{!this.props.fetching && <ReportContainer  />}
+							{this.props.fetching ?
+								<Grid centered>
+									<CircleLoader
+										centered
+										color={'#123abc'}
+										loading={this.props.loading}
+										size={'200'}
+									/>
+								</Grid>
+								:
+								<ReportContainer/>
+							}
 
 						</Grid.Column>
 						<Grid.Column only="computer" width={6} style={styles.settings}>
-							<SettingsContainer />
+							<SettingsContainer/>
 						</Grid.Column>
 					</Grid>
 				</Container>
@@ -44,8 +53,8 @@ class MainContainer extends Component {
 
 const mapStateToProps = state => {
 	return {
-		fetching: state.reportReducer.fetching
+		fetching:    state.reportReducer.fetching,
 	}
 };
 
-export default connect(mapStateToProps, { getReports })(MainContainer)
+export default connect(mapStateToProps, {getReports, byState, updateGeolocation})(MainContainer)

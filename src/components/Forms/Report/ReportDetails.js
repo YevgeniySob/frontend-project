@@ -61,12 +61,8 @@ class ReportDetails extends Component {
 									withIcon={true}
 									buttonText='Choose images'
 									onChange={this.props.onDrop}
-									imgExtension={['.jpg', '.gif', '.png', '.gif', '.jpeg']}
+									imgExtension={['.jpg', '.gif', '.png', '.jpeg']}
 								/>
-								{/*<input placeholder='Image or video will be perfect'*/}
-								{/*       onChange={this.props.handleChange('image')}*/}
-								{/*       defaultValue={values.image}*/}
-								{/*/>*/}
 							</Form.Field>
 							<Form.Field>
 								<label>Date of the incident</label>

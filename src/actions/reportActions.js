@@ -1,32 +1,19 @@
 import {
-	// REMOVE_REPORT,
+	UPDATE_REPORT,
 	GET_REPORTS,
 	ADD_REPORT,
 	UPVOTE,
 	DOWNVOTE,
 	BY_STATE,
 	FETCHING_TRUE,
-	FETCHING_FALSE
+	FETCHING_FALSE,
+	FIND_REPORT,
+	ADD_COMMENT
 } from './types'
 
-// const API_URL = "http://localhost:3000"
-// const get = url => {
-// 	return fetch(url).then(r => r.json())
-// }
-//
-// const adapter = {
-// 	getReports: (state) => get(`${API_URL}/report_by_state?id=${staate}`)
-
-
-// export const getReports = reports => {
-//
-// 	return {
-// 		type: GET_REPORTS,
-// 		payload: {
-// 			reports
-// 		}
-// 	}
-// };
+import {
+	newComment
+} from '../adapter/adapter'
 
 export const addReport = report => {
 	return {
@@ -38,7 +25,6 @@ export const addReport = report => {
 export const getReports = () => {
 
 	return (dispatch) => {
-		dispatch(fetchingTrue);
 		return fetch('http://localhost:3000/reports')
 			.then(r => r.json())
 			.then(reports => {
@@ -46,7 +32,7 @@ export const getReports = () => {
 					type:    GET_REPORTS,
 					payload: reports
 				});
-				dispatch(fetchingFalse)
+				dispatch(fetchingFalse())
 			})
 	}
 };
@@ -67,7 +53,8 @@ export const upvoteReport = reportId => {
 
 export const byState = state => {
 	return (dispatch) => {
-		dispatch(fetchingTrue);
+		console.log('got to fetch', state);
+
 		return fetch(`http://localhost:3000/report_by_state?state=${state}`)
 			.then(r => r.json())
 			.then(reports => {
@@ -75,7 +62,7 @@ export const byState = state => {
 					type:    BY_STATE,
 					payload: reports
 				});
-				dispatch(fetchingFalse)
+			dispatch(fetchingFalse())
 			})
 	}
 };
@@ -87,3 +74,37 @@ export const fetchingTrue = () => ({
 export const fetchingFalse = () => ({
 	type: FETCHING_FALSE
 });
+
+export const getReport = id => {
+	return (dispatch) => {
+
+		return fetch(`http://localhost:3000/report?id=${id}`)
+			.then(r => r.json())
+			.then(report => {
+				dispatch({
+					type: FIND_REPORT,
+					payload: report
+				});
+			})
+	}
+};
+
+export const updateReport = id => {
+	return {
+		type: UPDATE_REPORT,
+		payload: id
+	}
+};
+
+export const addComment = (content) => {
+	return (dispatch) => {
+
+		return newComment(content)
+			.then(report => {
+				dispatch({
+					type: ADD_COMMENT,
+					payload: report
+				});
+			})
+	}
+};

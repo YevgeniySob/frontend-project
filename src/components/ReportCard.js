@@ -3,8 +3,8 @@ import { connect }                          from 'react-redux'
 import { Header, Popup, Grid, Image, Icon } from 'semantic-ui-react'
 import LazyLoad                             from 'react-lazyload'
 // import {Link}                               from "react-router-dom";
-import { downvoteReport, upvoteReport } from '../actions/reportActions'
-
+import { downvoteReport, upvoteReport } from '../actions'
+import {withRouter}                   from "react-router-dom";
 
 const styles = {
 	mainGrid: {
@@ -52,8 +52,11 @@ class ReportCard extends PureComponent {
 	};
 
 	handleCardClick = e => {
-		// const id = e.target;
-		// console.log(id)
+		// if (e.target.classname)
+		const id = this.props.report.id;
+		// console.log('card click: ', id)
+		// console.log('Report: ', this.props.report)
+		this.props.history.push(`/report/${id}`)
 	};
 
 	handleUpvoteClick = id => {
@@ -106,13 +109,17 @@ class ReportCard extends PureComponent {
 
 	render() {
 
-		console.log("RENDERING", this.state);
-		const { id: reportId, title, votes, description, user: { id, reports_num, username, image}, comments} = this.props.report;
+		const { id: reportId, title, votes, image, description, user: { id, reports_num, username}, comments} = this.props.report;
+		// console.log("PROPS", this.props);
+		// console.log("RENDERING", image);
 
 		return (
-			<Grid style={styles.mainGrid} celled>
-
-				<Grid.Column width={1} color={'grey'}>
+			<Grid
+				style={styles.mainGrid}
+				className={'report-card'}
+				onClick={this.handleCardClick}
+			>
+				<Grid.Column width={1} color={'grey'} className={'left-area'}>
 					<Grid centered onClick={() => this.handleUpvoteClick(reportId)}>
 						<Icon style={styles.icon} name='arrow circle up'/>
 					</Grid>
@@ -153,7 +160,7 @@ class ReportCard extends PureComponent {
 							<Grid.Row style={{paddingRight: 0, paddingLeft: 0}} >
 								<Image  src={image} />
 							</Grid.Row>
-							<Grid.Row celled style={styles.comment}>
+							<Grid.Row style={styles.comment}>
 								<Icon name='comments'/>
 								<span>
 									{comments.length} Comments
@@ -176,4 +183,4 @@ const mapDispatchToProps = dispatch => {
 	}
 };
 
-export default connect(null, mapDispatchToProps)(ReportCard)
+export default connect(null, mapDispatchToProps)(withRouter(ReportCard))

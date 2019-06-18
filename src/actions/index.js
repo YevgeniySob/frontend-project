@@ -5,14 +5,18 @@ import {
 	byState,
 	fetchingFalse,
 	fetchingTrue,
-	addReport
+	addReport,
+	getReport,
+	updateReport,
+	addComment
 } from './reportActions'
 
 import {
 	autoLogin,
 	login,
 	logout,
-	signup
+	signup,
+	updateGeolocation
 } from './userActions'
 
 import {
@@ -31,5 +35,9 @@ export {
 	fetchingFalse,
 	fetchingTrue,
 	createReport,
-	addReport
+	addReport,
+	updateGeolocation,
+	getReport,
+	updateReport,
+	addComment
 }

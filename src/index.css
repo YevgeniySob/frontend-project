@@ -11,3 +11,28 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
   monospace;
 }
+
+.report-card:hover {
+  border: 1px solid rgba(45, 45, 45, 0.52);
+}
+
+.report-card {
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid #ffffff;
+  /*border-left: rgb(204, 204, 204);*/
+  /*border-left-style: solid;*/
+  /*border-left-width: 1px;*/
+  /*border-right-color: rgb(204, 204, 204);*/
+  /*border-right-style: solid;*/
+  /*border-right-width: 1px;*/
+  /*border-top-color: rgb(204, 204, 204);*/
+  border-radius: 3px;
+  /*border-top-style: solid;*/
+  /*border-top-width: 1px;*/
+}
+
+.left-area {
+  /*border-radius: 3px;*/
+  border-left: 4px solid transparent;
+}
+

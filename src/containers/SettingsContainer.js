@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from "react";
 import { Grid } from 'semantic-ui-react'
 import NewReportBox from '../components/NewReportBox'
+import BoxTwoContainer from '../components/BoxTwoContainer'
+
 const styles = {
 	mainGrid: {
 		margin: 0
@@ -21,7 +23,7 @@ export default class SettingsContainer extends Component {
 				</Grid.Row>
 
 				<Grid.Row style={styles.box}>
-					Box 2
+					<BoxTwoContainer/>
 				</Grid.Row>
 				<Grid.Row style={styles.box}>
 					Box 3

@@ -1,9 +1,9 @@
-import React, {Component} from 'react'
-import ReportCard         from '../components/ReportCard'
-import {connect}          from 'react-redux'
-import LazyLoad           from 'react-lazyload'
+import React, {Component}                 from 'react'
+import ReportCard                         from '../components/ReportCard'
+import {connect}                          from 'react-redux'
+import LazyLoad                           from 'react-lazyload'
 import { Dimmer, Loader, Image, Segment } from 'semantic-ui-react'
-
+import {RingLoader}                       from "react-spinners";
 
 const LoaderExampleLoader = () => (
 	<Segment>

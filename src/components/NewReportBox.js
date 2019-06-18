@@ -4,6 +4,7 @@ import { connect }                      from 'react-redux'
 import { stateList } from '../state'
 import { byState, fetchingTrue, fetchingFalse } from '../actions'
 import {Link}                               from "react-router-dom";
+import sign from '../assets/sign.jpg'
 
 class NewReportBox extends Component {
 
@@ -20,7 +21,7 @@ class NewReportBox extends Component {
 		return (
 			<Grid.Column>
 				<Grid.Row>
-					<Image src={'https://picsum.photos/id/237/300/50'} />
+					<Image src={sign} />
 				</Grid.Row>
 				<Grid.Row>
 					Search By State:
@@ -35,7 +36,11 @@ class NewReportBox extends Component {
 				</Grid.Row>
 				<Grid.Row>
 					<Link to={'/new-report'}>
-						<Button fluid inverted color='red'>
+						<Button
+							fluid
+							// inverted
+							color='black'
+						>
 							New Report
 						</Button>
 					</Link>
