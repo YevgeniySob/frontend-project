@@ -25,9 +25,7 @@ export default class SettingsContainer extends Component {
 				<Grid.Row style={styles.box}>
 					<BoxTwoContainer/>
 				</Grid.Row>
-				<Grid.Row style={styles.box}>
-					Box 3
-				</Grid.Row>
+
 			</Fragment>
 
 		);

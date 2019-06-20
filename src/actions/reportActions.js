@@ -29,7 +29,7 @@ export const addReport = report => {
 };
 
 export const getReports = () => {
-
+	console.log('getting all reports')
 	return (dispatch) => {
 		return fetch('http://localhost:3000/reports')
 			.then(r => r.json())
@@ -89,7 +89,6 @@ export const upvoteComment = (reportId, commentId) => {
 
 export const byState = state => {
 	return (dispatch) => {
-		console.log('got to fetch', state);
 
 		return fetch(`http://localhost:3000/report_by_state?state=${state}`)
 			.then(r => r.json())

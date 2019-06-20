@@ -90,7 +90,6 @@ class ReportForm extends Component {
 	};
 
 	render() {
-		console.log(this.state);
 		const {step} = this.state;
 		// eslint-disable-next-line default-case
 		switch (step) {

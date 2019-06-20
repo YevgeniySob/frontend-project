@@ -3,7 +3,6 @@ import {Marker}                     from 'react-leaflet'
 
 class UserMarker extends Component {
 	render() {
-		console.log('USER MARKER', this.props.userPosition)
 		return (
 			<Fragment>
 				<Marker

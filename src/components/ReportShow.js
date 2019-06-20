@@ -6,7 +6,6 @@ import {Button, Form, Grid, Modal, Image, Dropdown, Header, Icon}               
 import CommentsContainer
                                                                                            from '../components/Comments/CommentsContainer'
 import {showModal, addComment, downvoteReport, upvoteReport, sortByDate, sortByPopularity} from '../actions'
-import nature                                                                              from '../assets/nature.jpeg'
 
 const styles = {
 	mainGrid: {
@@ -109,7 +108,8 @@ class ReportShow extends Component {
 		e.preventDefault();
 		if (this.props.user.id === 0) {
 			this.props.showModal()
-		} else {
+		}
+		else {
 			if (this.state.content !== '') {
 				this.props.addComment({...this.state, userId: this.props.user.id});
 				this.setState({
@@ -140,6 +140,7 @@ class ReportShow extends Component {
 			>
 				<Grid.Column
 					width={9}
+					style={{maxWidth: '40%'}}
 				>
 					<Grid.Row color={'green'}>
 						<Grid.Column>
@@ -170,18 +171,13 @@ class ReportShow extends Component {
 									basic
 									size={'small'}
 									trigger={<Image src={parseImageSize({image})} alt={'wowo'}/>}
-									// header={capitalizeFirstLetter(title)}
 									content={<Image src={parseImageSize({image})} alt={'wowo'}/>}
-									// actions={['Snooze', { key: 'done', content: 'Done', positive: true }]}
 								/>
-								{/*<Image src={parseImageSize({image})} alt={'wowo'}/>*/}
 							</Grid.Row>
 							<Grid.Row>
 								Address
 							</Grid.Row>
-							<Grid.Row>
-								more info
-							</Grid.Row>
+
 						</Grid.Column>
 					</Grid.Row>
 					<Grid.Row color={'orange'} style={{marginTop: 20}}>
@@ -225,10 +221,6 @@ class ReportShow extends Component {
 					width={3}
 					style={{marginLeft: 20}}
 				>
-					{/*<Image*/}
-					{/*	src={nature}*/}
-					{/*	fluid*/}
-					{/*/>*/}
 				</Grid.Column>
 
 			</Grid>

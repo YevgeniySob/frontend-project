@@ -8,7 +8,8 @@ import {
 const initialState = {
 	user:        {
 		id:          0,
-		username:    ''
+		username:    '',
+		userImage: ''
 	},
 	geolocation: {
 		state: 'NY',

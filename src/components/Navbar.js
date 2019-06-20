@@ -19,7 +19,7 @@ class DesktopContainer extends Component {
 			<div className="ui top fixed borderless fluid huge menu">
 				<div className="ui container">
 					<Link to={'/'}>
-						<Item.Image size='tiny' src={Logo2} style={{marginLeft: 100}}/>
+						<Item.Image size='tiny' src={Logo2}/>
 					</Link>
 					{/*<a className="header item">Dont Mess</a>*/}
 					{/*<a className="active item">Reports</a>*/}

@@ -55,7 +55,6 @@ class Login extends Component {
 	};
 
 	render() {
-		console.log(this.state);
 		return (
 			<Grid centered >
 				<div className="ui middle aligned center aligned grid" style={styles.form}>

@@ -7,14 +7,6 @@ const waitForReports = (WaitedComponent) => {
 
 	class WaitingComponent extends Component {
 
-		// findReport = id => {
-		// 	if (this.props.reports.find(report => report.id === id)) {
-		// 		return this.props.reports.find(report => report.id === id)
-		// 	} else {
-		// 		this.props.getReport(id);
-		// 	}
-		// };
-
 		componentDidMount() {
 			const id       = parseInt(this.props.match.params.id);
 			const {report} = this.props;
@@ -22,21 +14,12 @@ const waitForReports = (WaitedComponent) => {
 			if (!report) {
 				this.props.getReport(id)
 			}
-			else if (report.id === id) {
-				console.log('do nothing')
-			}
 			else if (report.id !== id) {
 				this.props.updateReport(id)
 			}
-			// if (!this.props.report) {
-			// 	this.props.getReport(id)
-			// } else {
-			// 	this.props.updateReport(id)
-			// }
 		}
 
 		render() {
-			console.log('this report props', this.props);
 
 			return (
 				<Fragment>

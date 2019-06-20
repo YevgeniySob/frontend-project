@@ -11,7 +11,6 @@ import {
 } from "./reportActions";
 
 export const login = (user) => {
-	console.log('ACTION', user);
 	return {
 		type: LOGIN,
 		payload: user
@@ -37,6 +36,7 @@ export const autoLogin = user => {
 };
 
 export const updateGeolocation = (lat, log, state) => {
+	console.log('updating geolocation')
 	return dispatch => {
 		dispatch({
 			type: UPDATE_GEOLOCATION,

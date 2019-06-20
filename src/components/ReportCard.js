@@ -122,7 +122,6 @@ class ReportCard extends PureComponent {
 	render() {
 
 		const {id: reportId, title, votes, image, description, user: {id, reports_num, username}, comments} = this.props.report;
-		// console.log("RENDERING", image);
 
 		return (
 			<Grid
@@ -154,7 +153,8 @@ class ReportCard extends PureComponent {
 									content={'Total reports: ' + reports_num + " - " + username + " joined: " + this.state.user.userCreated + ' days ago'}
 									key={id}
 									header={this.state.user.full_name}
-									trigger={<Image src={'http://www.free-avatars.com/data/media/92/animated_homer_simpson.gif'} avatar/>}
+									trigger={<Image src={'https://gif-avatars.com/img/45x45/lew.gif\n' +
+									'\n'} avatar/>}
 								/>
 								<span>
 									Report submitted: {this.state.user.reportSubmitted}

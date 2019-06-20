@@ -2,7 +2,7 @@ import React, { Component }   from 'react'
 import { Grid, Button, Image, Dropdown } from 'semantic-ui-react'
 import { connect }                      from 'react-redux'
 import { stateList } from '../state'
-import { byState, fetchingTrue, fetchingFalse } from '../actions'
+import { byState, fetchingTrue, fetchingFalse, showModal } from '../actions'
 import {Link}                               from "react-router-dom";
 import sign from '../assets/sign.jpg'
 
@@ -17,13 +17,12 @@ class NewReportBox extends Component {
 	};
 
 	render() {
-		// console.log("STATE", this.state.state);
 		return (
 			<Grid.Column>
 				<Grid.Row>
 					<Image src={sign} />
 				</Grid.Row>
-				<Grid.Row>
+				<Grid.Row style={{marginBottom: 20}}>
 					Search By State:
 					<Dropdown
 						placeholder={this.state.state}
@@ -56,4 +55,4 @@ const mapStateToProps = state => {
 	}
 };
 
-export default connect(mapStateToProps, { byState, fetchingTrue, fetchingFalse })(NewReportBox)
+export default connect(mapStateToProps, { showModal, byState, fetchingTrue, fetchingFalse })(NewReportBox)

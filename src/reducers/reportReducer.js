@@ -71,19 +71,21 @@ export default function manageReports(state = initialState, action) {
 				report:  report
 			};
 		case UPVOTE_COMMENT:
-			report          = state.reports.find(report => report.id === action.payload.reportId);
-			report.comments = report.comments.map(comment => {
+			report = state.report;
+			report.comments = state.report.comments.map(comment => {
 				return comment.id === action.payload.commentId ? {...comment, points: ++comment.points} : comment
 			});
+
 			return {
 				...state,
 				report: report
 			};
 		case DOWNVOTE_COMMENT:
-			report          = state.reports.find(report => report.id === action.payload.reportId);
-			report.comments = report.comments.map(comment => {
+			report = state.report;
+			report.comments = state.report.comments.map(comment => {
 				return comment.id === action.payload.commentId ? {...comment, points: --comment.points} : comment
 			});
+
 			return {
 				...state,
 				report: report

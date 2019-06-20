@@ -1,5 +1,5 @@
-import React, { Component }           from 'react';
-import { Grid } from "semantic-ui-react";
+import React, { Component } from 'react';
+import {Grid, Header}       from "semantic-ui-react";
 
 const styles = {
 	form: {
@@ -20,7 +20,9 @@ class Success extends Component{
 						<h2 className="ui teal image header">
 							{/*<img src="assets/images/logo.png" className="image" />*/}
 							<div className="content">
-								<h1>Details are Successfully saved</h1>
+								<Header as='h2'>
+									Details are Successfully saved
+								</Header>
 							</div>
 						</h2>
 					</div>

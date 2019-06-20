@@ -11,10 +11,10 @@ class CommentsContainer extends Component {
 			return comments.sort((a, b) => {
 				let dateA = a.created_at;
 				let dateB = b.created_at;
-				if (dateA > dateB) {
+				if (dateA < dateB) {
 					return -1;
 				}
-				if (dateA < dateB) {
+				if (dateA > dateB) {
 					return 1;
 				}
 				else {

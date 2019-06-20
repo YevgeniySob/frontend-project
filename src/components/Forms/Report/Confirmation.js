@@ -6,11 +6,11 @@ const styles = {
 	form: {
 		width:        '450px',
 		marginTop:    200,
-		marginBottom: 0
+		marginBottom: 0,
+		backgroundColor: '#fffed6',
+		borderRadius: 5
 	}
 };
-
-
 
 class Confirmation extends Component {
 
@@ -26,7 +26,6 @@ class Confirmation extends Component {
 
 	render() {
 		const {values: {title, description, date, city, state, street, zipcode}} = this.props;
-		console.log(this.props)
 		return (
 			<Grid centered>
 				<div className="ui grid" style={styles.form}>

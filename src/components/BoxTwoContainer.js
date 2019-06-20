@@ -15,7 +15,6 @@ class BoxTwoContainer extends Component {
 	handleClose = () => this.setState({modalOpen: false});
 
 	render() {
-		console.log('fetching', this.props.fetching);
 		return (
 			<Fragment>
 				{this.props.fetching ?
@@ -32,7 +31,6 @@ class BoxTwoContainer extends Component {
 								fluid
 								color='black'
 							>
-
 								View On Map
 							</Button>}
 						open={this.state.modalOpen}

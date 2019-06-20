@@ -12,7 +12,7 @@ export const userGeolocation = (updateGeolocation, getReports) => {
 		const log     = position.coords.longitude;
 		const lat     = position.coords.latitude;
 		const address = lat + "," + log;
-		console.log('Getting user state from geolocation data');
+		console.log('Getting user state from geolocation data', lat , log);
 		fetch_address_api(address).then(data => {
 			const state = data.results[0].locations[0].adminArea3;
 			updateGeolocation(lat, log, state)

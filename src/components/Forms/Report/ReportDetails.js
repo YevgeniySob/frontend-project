@@ -25,6 +25,10 @@ class ReportDetails extends Component {
 		this.props.history.push("/")
 	};
 
+	currentDate = () => {
+		return new Date()
+	};
+
 	render() {
 		const {values} = this.props;
 		return (
@@ -74,6 +78,8 @@ class ReportDetails extends Component {
 									onChange={this.props.handleChange('date')}
 									animation={'scale'}
 									dateFormat={'YYYY-MM-DD'}
+									maxDate={this.currentDate()}
+									closable={true}
 								/>
 							</Form.Field>
 							<Button onClick={this.handleCancelClick}>Cancel</Button>
