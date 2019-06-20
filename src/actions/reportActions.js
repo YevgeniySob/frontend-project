@@ -8,16 +8,22 @@ import {
 	FETCHING_TRUE,
 	FETCHING_FALSE,
 	FIND_REPORT,
-	ADD_COMMENT
+	ADD_COMMENT,
+	SORT_BY_DATE,
+	SORT_BY_POPULARITY,
+	DOWNVOTE_COMMENT,
+	UPVOTE_COMMENT,
+	UPDATE_CURRENT_REPORT
 } from './types'
 
 import {
-	newComment
+	newComment,
+	points
 } from '../adapter/adapter'
 
 export const addReport = report => {
 	return {
-		type: ADD_REPORT,
+		type:    ADD_REPORT,
 		payload: report
 	}
 };
@@ -39,15 +45,45 @@ export const getReports = () => {
 
 export const downvoteReport = reportId => {
 	return {
-		type: DOWNVOTE,
+		type:    DOWNVOTE,
 		payload: reportId
 	}
 };
 
 export const upvoteReport = reportId => {
 	return {
-		type: UPVOTE,
+		type:    UPVOTE,
 		payload: reportId
+	}
+};
+
+export const downvoteComment = (reportId, commentId) => {
+	return (dispatch) => {
+		return points({where: 'down', commentId})
+			.then(something => {
+				dispatch({
+					type:    DOWNVOTE_COMMENT,
+					payload: {
+						commentId,
+						reportId
+					}
+				});
+			})
+	}
+};
+
+export const upvoteComment = (reportId, commentId) => {
+	return (dispatch) => {
+		return points({where: 'up', commentId})
+			.then(something => {
+				dispatch({
+					type:    UPVOTE_COMMENT,
+					payload: {
+						commentId,
+						reportId
+					}
+				});
+			})
 	}
 };
 
@@ -62,7 +98,7 @@ export const byState = state => {
 					type:    BY_STATE,
 					payload: reports
 				});
-			dispatch(fetchingFalse())
+				dispatch(fetchingFalse())
 			})
 	}
 };
@@ -82,7 +118,7 @@ export const getReport = id => {
 			.then(r => r.json())
 			.then(report => {
 				dispatch({
-					type: FIND_REPORT,
+					type:    FIND_REPORT,
 					payload: report
 				});
 			})
@@ -91,7 +127,7 @@ export const getReport = id => {
 
 export const updateReport = id => {
 	return {
-		type: UPDATE_REPORT,
+		type:    UPDATE_REPORT,
 		payload: id
 	}
 };
@@ -102,9 +138,30 @@ export const addComment = (content) => {
 		return newComment(content)
 			.then(report => {
 				dispatch({
-					type: ADD_COMMENT,
+					type:    ADD_COMMENT,
 					payload: report
 				});
 			})
+	}
+};
+
+export const sortByDate = by => {
+	return {
+		type:    SORT_BY_DATE,
+		payload: by
+	}
+};
+
+export const sortByPopularity = by => {
+	return {
+		type:    SORT_BY_POPULARITY,
+		payload: by
+	}
+};
+
+export const updateCurrentReport = id => {
+	return {
+		type:    UPDATE_CURRENT_REPORT,
+		payload: id
 	}
 };

@@ -42,10 +42,15 @@ export const newComment = (attributes) => {
 	return post(`${API_URL}/add_comment`, attributes)
 };
 
+export const points = attributes => {
+	return post(`${API_URL}/points`, attributes)
+}
+
 export const adapter = {
 	createReport,
 	createUser,
 	fetch_address_api,
-	newComment
+	newComment,
+	points
 };
 

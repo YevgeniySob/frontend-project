@@ -1,71 +1,114 @@
 import React, {Component}   from 'react';
 import {Button, Grid, List} from 'semantic-ui-react';
-import {Link}               from "react-router-dom";
+import {withRouter}        from 'react-router-dom'
 
 const styles = {
 	form: {
-		// paddingTop: 500,
-		width:        '400px',
+		width:        '450px',
 		marginTop:    200,
 		marginBottom: 0
 	}
 };
 
+
+
 class Confirmation extends Component {
-	// saveAndContinue = (e) => {
-	// 	e.preventDefault();
-	// 	this.props.nextStep();
-	// };
 
 	back = (e) => {
 		e.preventDefault();
 		this.props.prevStep();
+		// setTimeout(() => this.move(),3000);
+	};
+
+	move = () => {
+		this.props.history.push('/')
 	};
 
 	render() {
-		const {values:  {title, description, date, city, state, street, zipcode}} = this.props;
-
+		const {values: {title, description, date, city, state, street, zipcode}} = this.props;
+		console.log(this.props)
 		return (
 			<Grid centered>
-				<div className="ui middle aligned center aligned grid" style={styles.form}>
+				<div className="ui grid" style={styles.form}>
 					<div className="column">
 						<h2 className="ui teal image header">
-							{/*<img src="assets/images/logo.png" className="image" />*/}
 							<div className="content">
 								Confirm your Details
 							</div>
 						</h2>
 						<div>
-							<p>Click Confirm if the following details have been correctly entered. You can go back and edit.</p>
-							<List>
-								<List.Item>
-									{/*<List.Icon name='users' />*/}
-									<List.Content>Title: {title}</List.Content>
-								</List.Item>
-								<List.Item>
-									<List.Content>Description: {description}</List.Content>
-								</List.Item>
-								{/*<List.Item>*/}
-								{/*	<List.Content>Image: {image}            </List.Content>*/}
-								{/*</List.Item>*/}
-								<List.Item>
-									<List.Content>Date: {date}</List.Content>
-								</List.Item>
-								<List.Item>
-									<List.Content>City: {city} </List.Content>
-								</List.Item>
-								<List.Item>
-									<List.Content> State: {state}</List.Content>
-								</List.Item>
-								<List.Item>
-									<List.Content>Street: {street} </List.Content>
-								</List.Item>
-								<List.Item>
-									<List.Content>Zipcode: {zipcode} </List.Content>
-								</List.Item>
-							</List>
-							<Button onClick={this.back}>Back</Button>
-							<Button onClick={this.props.handleSubmit}>Confirm</Button>
+							<p>Click Confirm if the following details have been correctly entered or can go back and edit.</p>
+							<Grid >
+								<Grid.Row>
+									<Grid.Column width={5}>
+										<List
+
+											style={{textAlign: 'left'}}
+											verticalAlign='middle'
+											size={'big'}
+
+										>
+											<List.Item>
+												<List.Content>Title:</List.Content>
+											</List.Item>
+											<List.Item>
+												<List.Content>Description:</List.Content>
+											</List.Item>
+											<List.Item>
+												<List.Content>Date:</List.Content>
+											</List.Item>
+											<List.Item>
+												<List.Content>City:</List.Content>
+											</List.Item>
+											<List.Item>
+												<List.Content> State:</List.Content>
+											</List.Item>
+											<List.Item>
+												<List.Content>Street:</List.Content>
+											</List.Item>
+											<List.Item>
+												<List.Content>Zipcode:</List.Content>
+											</List.Item>
+										</List>
+
+									</Grid.Column>
+									<Grid.Column width={11}>
+										<List
+											style={{textAlign: 'left'}}
+											verticalAlign='middle'
+											size={'big'}
+
+										>
+											<List.Item>
+												<List.Content>{title}</List.Content>
+											</List.Item>
+											<List.Item>
+												<List.Content>{description}</List.Content>
+											</List.Item>
+											<List.Item>
+												<List.Content>{date}</List.Content>
+											</List.Item>
+											<List.Item>
+												<List.Content>{city} </List.Content>
+											</List.Item>
+											<List.Item>
+												<List.Content> {state}</List.Content>
+											</List.Item>
+											<List.Item>
+												<List.Content>{street} </List.Content>
+											</List.Item>
+											<List.Item>
+												<List.Content>{zipcode} </List.Content>
+											</List.Item>
+										</List>
+									</Grid.Column>
+								</Grid.Row>
+								<Grid.Row>
+									<Button onClick={this.back}>Back</Button>
+									<Button onClick={this.props.handleSubmit}>Confirm</Button>
+								</Grid.Row>
+							</Grid>
+
 						</div>
 					</div>
 				</div>
@@ -74,4 +117,4 @@ class Confirmation extends Component {
 	}
 }
 
-export default Confirmation;
+export default withRouter(Confirmation);

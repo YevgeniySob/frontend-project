@@ -5,10 +5,11 @@ body {
   sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: url('./assets/attractive-background.jpg');
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  font-family: 'Tinos', serif, source-code-pro, Menlo, Monaco, Consolas, "Courier New",
   monospace;
 }
 
@@ -19,16 +20,7 @@ code {
 .report-card {
   background-color: rgba(255, 255, 255, 0);
   border: 1px solid #ffffff;
-  /*border-left: rgb(204, 204, 204);*/
-  /*border-left-style: solid;*/
-  /*border-left-width: 1px;*/
-  /*border-right-color: rgb(204, 204, 204);*/
-  /*border-right-style: solid;*/
-  /*border-right-width: 1px;*/
-  /*border-top-color: rgb(204, 204, 204);*/
   border-radius: 3px;
-  /*border-top-style: solid;*/
-  /*border-top-width: 1px;*/
 }
 
 .left-area {
@@ -36,3 +28,22 @@ code {
   border-left: 4px solid transparent;
 }
 
+i.icon.arrow.up:hover {
+  color: #3dff2b;
+}
+
+i.icon.arrow.down:hover {
+  color: #ff0526;
+}
+
+i.icon.angle.up:hover {
+  color: #3dff2b;
+}
+
+i.icon.angle.down:hover {
+  color: #ff0526;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Amatic SC', cursive !important;
+}

@@ -12,6 +12,7 @@ const styles = {
 
 class Success extends Component{
 	render(){
+
 		return(
 			<Grid centered >
 				<div className="ui middle aligned center aligned grid" style={styles.form}>
@@ -19,7 +20,7 @@ class Success extends Component{
 						<h2 className="ui teal image header">
 							{/*<img src="assets/images/logo.png" className="image" />*/}
 							<div className="content">
-								Details are Successfully saved
+								<h1>Details are Successfully saved</h1>
 							</div>
 						</h2>
 					</div>

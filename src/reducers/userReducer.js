@@ -6,11 +6,14 @@ import {
 } from '../actions/types'
 
 const initialState = {
-	user:        null,
+	user:        {
+		id:          0,
+		username:    ''
+	},
 	geolocation: {
 		state: 'NY',
-		lat: '40.712234',
-		log: '-74.008561'
+		lat:   '40.712234',
+		log:   '-74.008561'
 	}
 };
 
@@ -24,7 +27,10 @@ export default function manageUser(state = initialState, action) {
 		case LOGOUT:
 			return {
 				...state,
-				user: null
+				user: {
+					...state.user,
+					id: 0
+				}
 			};
 		case SIGNUP:
 			return {
@@ -36,8 +42,8 @@ export default function manageUser(state = initialState, action) {
 				...state,
 				geolocation: {
 					state: action.payload.state,
-					lat: action.payload.lat,
-					log: action.payload.log
+					lat:   action.payload.lat,
+					log:   action.payload.log
 				}
 			};
 		default:

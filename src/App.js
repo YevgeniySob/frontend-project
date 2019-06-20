@@ -1,5 +1,4 @@
 import React, {Component}                      from 'react';
-import './App.css';
 import {Route, Switch}                         from 'react-router-dom';
 import Navbar                                  from './components/Navbar'
 import Login                                   from './components/Forms/LoginForm'
@@ -12,15 +11,15 @@ import {connect}                               from 'react-redux'
 import {fetchingTrue, autoLogin, getReports, updateGeolocation} from './actions'
 import {userGeolocation}                       from "./UserGeolocation";
 import ReportsMap                              from './components/map/ReportsMap'
+import BlockPrivateActions from './components/Modal/BlockPrivateActions'
 
 class App extends Component {
 
 	componentDidMount() {
 		this.props.fetchingTrue();
 		userGeolocation(this.props.updateGeolocation, this.props.getReports);
-
 		const token = localStorage.getItem('token');
-		if (token && !this.props.user) {
+		if (token && this.props.user.id === 0) {
 			fetch('http://localhost:3000/auto_login', {
 				headers: {
 					Authorization: token
@@ -37,6 +36,7 @@ class App extends Component {
 		return (
 			<React.Fragment>
 				<Navbar/>
+				<BlockPrivateActions />
 				<Switch>
 					<Route path="/signup" component={Signup}/>
 					<Route path="/login" component={Login}/>

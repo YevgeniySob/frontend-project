@@ -90,8 +90,8 @@ class ReportsMap extends Component {
 					<TileLayer
 						attribution={"TRASH"}
 						url='https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png'
-						minZoom={7}
-						maxZoom={17}
+						minZoom={3}
+						maxZoom={20}
 					/>
 					<UserMarker userPosition={userPosition} icon={userIcon} />
 					{this.renderReports()}

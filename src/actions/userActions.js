@@ -16,8 +16,6 @@ export const login = (user) => {
 		type: LOGIN,
 		payload: user
 	}
-	// we want fetch
-	// dispatch all th4e goods
 };
 
 export const signup = user => {
@@ -32,12 +30,6 @@ export const logout = () => ({
 });
 
 export const autoLogin = user => {
-	// fetch('localhost:3000/auto_login')
-	//   .then(r => r.json())
-	//   .then(data => {
-	//     data
-	//     dispatch({user: data})
-	//   })
 	return {
 		type: LOGIN,
 		payload: user

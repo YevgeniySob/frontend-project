@@ -19,21 +19,21 @@ class DesktopContainer extends Component {
 			<div className="ui top fixed borderless fluid huge menu">
 				<div className="ui container">
 					<Link to={'/'}>
-						<Item.Image size='tiny' src={Logo2} />
+						<Item.Image size='tiny' src={Logo2} style={{marginLeft: 100}}/>
 					</Link>
 					{/*<a className="header item">Dont Mess</a>*/}
 					{/*<a className="active item">Reports</a>*/}
 					{/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-					<a className="ui dropdown item" tabIndex="0">
-						Dropdown <i className="dropdown icon" />
-						<div className="menu" tabIndex="-1">
-							<div className="item">Something</div>
-							<div className="ui divider"/>
-							<div className="item">Something</div>
-						</div>
-					</a>
-					<div className="right menu">
-					{!this.props.user ?
+					{/*<a className="ui dropdown item" tabIndex="0">*/}
+					{/*	Dropdown <i className="dropdown icon" />*/}
+					{/*	<div className="menu" tabIndex="-1">*/}
+					{/*		<div className="item">Something</div>*/}
+					{/*		<div className="ui divider"/>*/}
+					{/*		<div className="item">Something</div>*/}
+					{/*	</div>*/}
+					{/*</a>*/}
+					<div className="right menu" style={{marginRight: 100}}>
+					{this.props.user.id === 0 ?
 						(<Fragment>
 							<Link className={'item'} to={'/login'}>
 								Login

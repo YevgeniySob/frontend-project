@@ -17,7 +17,7 @@ const waitForReports = (WaitedComponent) => {
 
 		componentDidMount() {
 			const id       = parseInt(this.props.match.params.id);
-			const {report} = this.props
+			const {report} = this.props;
 
 			if (!report) {
 				this.props.getReport(id)
@@ -41,7 +41,7 @@ const waitForReports = (WaitedComponent) => {
 			return (
 				<Fragment>
 					{this.props.loading || !this.props.report ?
-						<div style={{marginTop: 200}} className='sweet-loading'>
+						<div style={{marginTop: 200, marginLeft: 300}} className='sweet-loading'>
 							<RingLoader
 								color={'#123abc'}
 								loading={this.props.loading}

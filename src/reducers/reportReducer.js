@@ -1,5 +1,4 @@
 import {
-	REMOVE_REPORT,
 	GET_REPORTS,
 	UPVOTE,
 	DOWNVOTE,
@@ -8,13 +7,21 @@ import {
 	FETCHING_FALSE,
 	CREATE_REPORT,
 	FIND_REPORT,
-	UPDATE_REPORT, ADD_COMMENT
+	UPDATE_REPORT,
+	ADD_COMMENT,
+	SORT_BY_POPULARITY,
+	SORT_BY_DATE,
+	UPVOTE_COMMENT,
+	DOWNVOTE_COMMENT,
+	UPDATE_CURRENT_REPORT,
+
 } from '../actions/types'
 
 const initialState = {
-	reports: [],
-	report: null,
-	fetching: false
+	reports:  [],
+	report:   null,
+	fetching: false,
+	sortBy:   'date'
 };
 
 export default function manageReports(state = initialState, action) {
@@ -26,7 +33,7 @@ export default function manageReports(state = initialState, action) {
 				...state,
 				report: action.payload
 			};
-			case UPDATE_REPORT:
+		case UPDATE_REPORT:
 			report = state.reports.find(report => report.id === action.payload)
 			return {
 				...state,
@@ -46,19 +53,40 @@ export default function manageReports(state = initialState, action) {
 			reports = state.reports.map(report => {
 				return report.id === action.payload ? {...report, votes: ++report.votes} : report
 			});
-
+			report  = reports.find(report => report.id === action.payload);
 			return {
 				...state,
-				reports
+				reports: reports,
+				report:  report
 			};
 		case DOWNVOTE:
 			reports = state.reports.map(report => {
 				return report.id === action.payload ? {...report, votes: --report.votes} : report
 			});
 
+			report = reports.find(report => report.id === action.payload);
 			return {
 				...state,
-				reports
+				reports: reports,
+				report:  report
+			};
+		case UPVOTE_COMMENT:
+			report          = state.reports.find(report => report.id === action.payload.reportId);
+			report.comments = report.comments.map(comment => {
+				return comment.id === action.payload.commentId ? {...comment, points: ++comment.points} : comment
+			});
+			return {
+				...state,
+				report: report
+			};
+		case DOWNVOTE_COMMENT:
+			report          = state.reports.find(report => report.id === action.payload.reportId);
+			report.comments = report.comments.map(comment => {
+				return comment.id === action.payload.commentId ? {...comment, points: --comment.points} : comment
+			});
+			return {
+				...state,
+				report: report
 			};
 		case BY_STATE:
 
@@ -77,11 +105,25 @@ export default function manageReports(state = initialState, action) {
 				fetching: true
 			};
 		case ADD_COMMENT:
-			report = state.reports.find(report => report.id === action.payload)
-			debugger
 			return {
-				...state
-				// reports: [...this.state.reports ]
+				...state,
+				report: action.payload
+			};
+		case SORT_BY_POPULARITY:
+			return {
+				...state,
+				sortBy: action.payload
+			};
+		case SORT_BY_DATE:
+			return {
+				...state,
+				sortBy: action.payload
+			};
+		case UPDATE_CURRENT_REPORT:
+			report = state.reports.find(report => report.id === parseInt(action.payload))
+			return {
+				...state,
+				report: report
 			};
 		default:
 			return state

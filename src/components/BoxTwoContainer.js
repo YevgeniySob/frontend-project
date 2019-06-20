@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react'
 import {RingLoader}                 from 'react-spinners';
 import {connect}                    from 'react-redux'
-import {Modal, Grid, Button}        from "semantic-ui-react";
+import {Modal, Button}        from "semantic-ui-react";
 import ReportsMap                   from './map/ReportsMap'
 
 class BoxTwoContainer extends Component {
@@ -22,7 +22,7 @@ class BoxTwoContainer extends Component {
 					<RingLoader
 						color={'#123abc'}
 						loading={this.props.loading}
-						size={'25'}
+						size={25}
 					/>
 					:
 					<Modal
@@ -33,7 +33,7 @@ class BoxTwoContainer extends Component {
 								color='black'
 							>
 
-								Open Map
+								View On Map
 							</Button>}
 						open={this.state.modalOpen}
 						onClose={this.handleClose}

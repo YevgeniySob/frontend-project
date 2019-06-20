@@ -1,6 +1,4 @@
-import {CREATE_REPORT}               from './types'
 import {fetchingTrue, fetchingFalse} from './reportActions'
-import {adapter}                     from '../adapter/adapter'
 
 export const createReport = (report, userId) => {
 	return (dispatch) => {

@@ -4,15 +4,14 @@ import {getReports, byState, updateGeolocation} from '../actions'
 import ReportContainer                          from './ReportContainer'
 import SettingsContainer                        from './SettingsContainer'
 import {Container, Grid}                        from "semantic-ui-react";
-import {RingLoader,CircleLoader}                             from "react-spinners";
-// import {userGeolocation}                        from '../UserGeolocation'
+import {CircleLoader}                             from "react-spinners";
 
 const styles = {
 	noMargin: {
 		margin: 0
 	},
 	settings: {
-		paddingLeft:   24,
+		paddingLeft:   50,
 		paddingRight:  0,
 		paddingTop:    0,
 		paddingBottom: 0
@@ -21,19 +20,23 @@ const styles = {
 
 class MainContainer extends Component {
 
+	componentDidMount() {
+		window.scrollTo(0,0)
+	}
+
 	render() {
 		return (
 			<Fragment>
-				<Container style={{marginTop: 100, width: '70%'}}>
+				<Container style={{marginTop: 100}}>
 					<Grid stackable padded style={{width: "100%", paddingRight: 0}}>
-						<Grid.Column only="computer" width={10} style={{padding: 0}}>
+						<Grid.Column only="computer" width={10} style={{paddingRight: 40, paddingTop: 0}}>
 							{this.props.fetching ?
 								<Grid centered>
 									<CircleLoader
 										centered
 										color={'#123abc'}
 										loading={this.props.loading}
-										size={'200'}
+										size={200}
 									/>
 								</Grid>
 								:

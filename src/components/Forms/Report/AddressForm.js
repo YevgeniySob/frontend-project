@@ -1,7 +1,5 @@
 import React, { Component }           from 'react';
-import {Form, Button, Grid, Dropdown} from 'semantic-ui-react';
-import {Link}                         from "react-router-dom";
-import { connect }                    from 'react-redux'
+import {Form, Button, Grid} from 'semantic-ui-react';
 import {stateList}                    from "../../../state";
 
 const styles = {
@@ -32,25 +30,11 @@ class AddressForm extends Component{
 				<div className="ui middle aligned center aligned grid" style={styles.form}>
 					<div className="column">
 						<h2 className="ui teal image header">
-							{/*<img src="assets/images/logo.png" className="image" />*/}
 							<div className="content">
 								Address of the incident
 							</div>
 						</h2>
 							<Form color='blue' >
-								{/*<h1 className="ui centered">Address of the incident</h1>*/}
-									{/*<label>State</label>*/}
-								{/*<label>State</label>*/}
-								{/*<Dropdown*/}
-								{/*		label='State'*/}
-								{/*		placeholder={'State'}*/}
-								{/*		fluid*/}
-								{/*		search*/}
-								{/*		selection*/}
-								{/*		options={stateList}*/}
-								{/*		onChange={this.props.handleStateChange('state')}*/}
-								{/*		defaultValue={values.state}*/}
-								{/*	/>*/}
 								<Form.Select
 									fluid
 									label='State'

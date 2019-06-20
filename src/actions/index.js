@@ -8,9 +8,18 @@ import {
 	addReport,
 	getReport,
 	updateReport,
-	addComment
+	addComment,
+	sortByPopularity,
+	sortByDate,
+	upvoteComment,
+	downvoteComment,
+	updateCurrentReport
 } from './reportActions'
 
+import {
+	hideModal,
+	showModal
+} from './modalActions'
 import {
 	autoLogin,
 	login,
@@ -24,6 +33,8 @@ import {
 } from './ReportFormActions'
 
 export {
+	hideModal,
+	showModal,
 	getReports,
 	autoLogin,
 	login,
@@ -39,5 +50,10 @@ export {
 	updateGeolocation,
 	getReport,
 	updateReport,
-	addComment
+	addComment,
+	sortByPopularity,
+	sortByDate,
+	upvoteComment,
+	downvoteComment,
+	updateCurrentReport
 }
