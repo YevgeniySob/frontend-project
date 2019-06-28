@@ -10,7 +10,7 @@ const styles = {
 	form: {
 		// paddingTop: 500,
 		width:        '400px',
-		marginTop:    200,
+		marginTop:    100,
 		marginBottom: 0
 	}
 };

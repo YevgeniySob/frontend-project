@@ -2,7 +2,7 @@ export const stateList = [
 	{ latitude: '61.370716', longitude: '-152.404419', value: 'AK', key: 'AK', text: 'Alaska' },
 	{ latitude: '32.806671', longitude: '-86.791130', value: 'AL', key: 'AL', text: 'Alabama' },
 	{ latitude: '34.969704', longitude: '-92.373123', value: 'AR', key: 'AR', text: 'Arkansas' },
-	// { latitude: '', longitude: '', value: 'AS', key: 'AS', text: 'American Samoa' },
+	{ latitude: '', longitude: '', value: 'AS', key: 'AS', text: 'American Samoa' },
 	{ latitude: '33.729759', longitude: '-111.431221', value: 'AZ', key: 'AZ', text: 'Arizona' },
 	{ latitude: '36.116203', longitude: '-119.681564', value: 'CA', key: 'CA', text: 'California' },
 	{ latitude: '39.059811', longitude: '-105.311104', value: 'CO', key: 'CO', text: 'Colorado' },

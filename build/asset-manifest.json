@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.3708a0f3.chunk.css",
+    "main.js": "/static/js/main.478d6fca.chunk.js",
+    "main.js.map": "/static/js/main.478d6fca.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
+    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
+    "static/css/2.7f8178a9.chunk.css": "/static/css/2.7f8178a9.chunk.css",
+    "static/js/2.3359e252.chunk.js": "/static/js/2.3359e252.chunk.js",
+    "static/js/2.3359e252.chunk.js.map": "/static/js/2.3359e252.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.f28ab89a509e182aa5568ee91111818f.js": "/precache-manifest.f28ab89a509e182aa5568ee91111818f.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.7f8178a9.chunk.css.map": "/static/css/2.7f8178a9.chunk.css.map",
+    "static/css/main.3708a0f3.chunk.css.map": "/static/css/main.3708a0f3.chunk.css.map",
+    "static/media/404-not-found.jpg": "/static/media/404-not-found.239b2498.jpg",
+    "static/media/Logo2.png": "/static/media/Logo2.62bbf0d1.png",
+    "static/media/UploadIcon.svg": "/static/media/UploadIcon.1cedb6e9.svg",
+    "static/media/index.css": "/static/media/attractive-background.da386a91.jpg",
+    "static/media/semantic.min.css": "/static/media/outline-icons.ef60a4f6.woff",
+    "static/media/garbage-bag.png": "/static/media/garbage-bag.bce80cb8.png",
+    "static/media/letsbefriends.jpg": "/static/media/letsbefriends.3ebc3091.jpg",
+    "static/media/sign.jpg": "/static/media/sign.c9a3bafc.jpg",
+    "static/media/userIcon.png": "/static/media/userIcon.29eac658.png"
+  }
+}

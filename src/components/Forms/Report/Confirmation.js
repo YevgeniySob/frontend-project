@@ -5,7 +5,7 @@ import {withRouter}        from 'react-router-dom'
 const styles = {
 	form: {
 		width:        '450px',
-		marginTop:    200,
+		marginTop:    100,
 		marginBottom: 0,
 		backgroundColor: '#fffed6',
 		borderRadius: 5
