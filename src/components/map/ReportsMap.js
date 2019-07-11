@@ -53,9 +53,7 @@ class ReportsMap extends Component {
 		})
 	};
 
-	componentDidMount() {
-
-	};
+	componentDidMount() {};
 
 	render() {
 		const userPosition = [this.props.lat, this.props.log];

@@ -6,7 +6,6 @@ const geo_url     = GEO_API_URL + GEO_API_KEY + parameter;
 
 // Main Api variables
 const API_URL        = 'https://dont-mess-back.herokuapp.com';
-// const parameters = '?id=';
 export const headers = {
 	Accept:         'application/json',
 	"Content-Type": "application/json"
