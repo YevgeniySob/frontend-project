@@ -12,6 +12,7 @@ import {fetchingTrue, autoLogin, getReports, updateGeolocation} from './actions'
 import {userGeolocation}                       from "./UserGeolocation";
 import ReportsMap                              from './components/map/ReportsMap'
 import BlockPrivateActions from './components/Modal/BlockPrivateActions'
+import {autoLoginFetch} from './adapter/adapter'
 
 class App extends Component {
 
@@ -20,15 +21,7 @@ class App extends Component {
 		userGeolocation(this.props.updateGeolocation, this.props.getReports);
 		const token = localStorage.getItem('token');
 		if (token && this.props.user.id === 0) {
-			fetch('http://localhost:3000/auto_login', {
-				headers: {
-					Authorization: token
-				}
-			})
-				.then(res => res.json())
-				.then(data => {
-					this.props.autoLogin(data)
-				})
+			autoLoginFetch(token).then(data => {this.props.autoLogin(data)})
 		}
 	};
 

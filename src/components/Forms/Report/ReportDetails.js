@@ -76,7 +76,6 @@ class ReportDetails extends Component {
 									value={values.date}
 									iconPosition="left"
 									onChange={this.props.handleChange('date')}
-									animation={'scale'}
 									dateFormat={'YYYY-MM-DD'}
 									maxDate={this.currentDate()}
 									closable={true}
