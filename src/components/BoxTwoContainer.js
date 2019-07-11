@@ -18,11 +18,14 @@ class BoxTwoContainer extends Component {
 		return (
 			<Fragment>
 				{this.props.fetching ?
-					<RingLoader
-						color={'#123abc'}
-						loading={this.props.loading}
-						size={25}
-					/>
+					<Button
+						onClick={this.handleOpen}
+						fluid
+						color='black'
+						disabled
+					>
+						View On Map
+					</Button>
 					:
 					<Modal
 						trigger={

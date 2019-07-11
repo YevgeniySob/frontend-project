@@ -7,7 +7,6 @@ class CommentsContainer extends Component {
 
 	sortedComments = comments => {
 		if (this.props.sortBy === 'date') {
-			// debugger
 			return comments.sort((a, b) => {
 				let dateA = a.created_at;
 				let dateB = b.created_at;
@@ -23,7 +22,6 @@ class CommentsContainer extends Component {
 			})
 		}
 		else if (this.props.sortBy === 'popularity') {
-			// debugger
 			return comments.sort((a, b) => {
 				return b.points - a.points;
 			});
@@ -31,7 +29,6 @@ class CommentsContainer extends Component {
 	};
 
 	renderComments = comments => {
-		// debugger
 		return this.sortedComments(comments).map(comment => {
 			return <UserComment reportId={this.props.reportId} key={comment.id} comment={comment}/>
 		})

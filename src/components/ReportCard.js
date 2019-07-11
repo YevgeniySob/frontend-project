@@ -2,9 +2,9 @@ import React, {PureComponent}             from 'react'
 import {connect}                          from 'react-redux'
 import {Header, Popup, Grid, Image, Icon} from 'semantic-ui-react'
 import LazyLoad                           from 'react-lazyload'
-// import {Link}                               from "react-router-dom";
 import {downvoteReport, upvoteReport, updateCurrentReport, showModal}     from '../actions'
 import {withRouter}                       from "react-router-dom";
+import {upvoteFetch, downvoteFetch} from '../adapter/adapter'
 
 const styles = {
 	mainGrid: {
@@ -58,24 +58,13 @@ class ReportCard extends PureComponent {
 			this.props.updateCurrentReport(id);
 			this.props.history.push(`/report/${id}`)
 		}
-
 	};
 
 	handleUpvoteClick = id => {
 		if (this.props.user.id === 0) {
 			this.props.showModal()
 		} else {
-			fetch('http://localhost:3000/report_vote', {
-				method:  'POST',
-				headers: {
-					"Content-Type": "application/json",
-					"Accept":       "application/json"
-				},
-				body:    JSON.stringify({
-					vote:     'up',
-					reportId: id
-				})
-			});
+			upvoteFetch(id)
 			this.props.upvoteReport(id)
 		}
 	};
@@ -85,17 +74,7 @@ class ReportCard extends PureComponent {
 			this.props.showModal()
 		} else {
 			if (votes > 1) {
-				fetch('http://localhost:3000/report_vote', {
-					method:  'POST',
-					headers: {
-						"Content-Type": "application/json",
-						"Accept":       "application/json"
-					},
-					body:    JSON.stringify({
-						vote:     'down',
-						reportId: id
-					})
-				});
+				downvoteFetch(id)
 				this.props.downvoteReport(id)
 			}
 		}

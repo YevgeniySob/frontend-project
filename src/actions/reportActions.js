@@ -18,7 +18,10 @@ import {
 
 import {
 	newComment,
-	points
+	points,
+	allReportsFetch,
+	byStateReportsFetch,
+	getReportFetch
 } from '../adapter/adapter'
 
 export const addReport = report => {
@@ -29,10 +32,9 @@ export const addReport = report => {
 };
 
 export const getReports = () => {
-	console.log('getting all reports')
+	console.log('getting all reports');
 	return (dispatch) => {
-		return fetch('http://localhost:3000/reports')
-			.then(r => r.json())
+		allReportsFetch()
 			.then(reports => {
 				dispatch({
 					type:    GET_REPORTS,
@@ -89,9 +91,7 @@ export const upvoteComment = (reportId, commentId) => {
 
 export const byState = state => {
 	return (dispatch) => {
-
-		return fetch(`http://localhost:3000/report_by_state?state=${state}`)
-			.then(r => r.json())
+		byStateReportsFetch(state)
 			.then(reports => {
 				dispatch({
 					type:    BY_STATE,
@@ -112,9 +112,7 @@ export const fetchingFalse = () => ({
 
 export const getReport = id => {
 	return (dispatch) => {
-
-		return fetch(`http://localhost:3000/report?id=${id}`)
-			.then(r => r.json())
+		getReportFetch(id)
 			.then(report => {
 				dispatch({
 					type:    FIND_REPORT,
@@ -133,7 +131,6 @@ export const updateReport = id => {
 
 export const addComment = (content) => {
 	return (dispatch) => {
-
 		return newComment(content)
 			.then(report => {
 				dispatch({

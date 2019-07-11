@@ -4,6 +4,7 @@ import { Grid }             from 'semantic-ui-react'
 import { Link }               from "react-router-dom";
 import { login }            from '../../actions'
 import { withRouter}        from 'react-router-dom'
+import { loginForm } from '../../adapter/adapter'
 
 const styles = {
 	form: {
@@ -29,24 +30,16 @@ class Login extends Component {
 
 	handleSubmit = e => {
 		e.preventDefault();
-
-		fetch('http://localhost:3000/login', {
-			method: 'POST',
-			headers: {
-				Accept: 'application/json',
-				'content-type': 'application/json'
-			},
-			body: JSON.stringify({
-				user: this.state
-			})
-		})
-			.then(r => r.json())
+		loginForm(this.state)
 			.then(data => {
-				const { token, user } = data;
-				localStorage.setItem('token', token);
-				this.props.login(user);
-				this.props.history.push("/")
-
+				if (data.errors) {
+					console.error('could not login')
+				} else {
+					const { token, user } = data;
+					localStorage.setItem('token', token);
+					this.props.login(user);
+					this.props.history.push("/")
+				}
 			});
 		this.setState({
 			username: '',

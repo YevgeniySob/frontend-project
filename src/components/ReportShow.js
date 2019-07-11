@@ -2,10 +2,10 @@ import React, {Component}                                                       
 import {connect}                                                                           from 'react-redux'
 import waitForReports                                                                      from '../HOC/waitForReports'
 import {Button, Form, Grid, Modal, Image, Dropdown, Header, Icon}                          from 'semantic-ui-react'
-// import LazyLoad                                                                                     from "react-lazyload";
 import CommentsContainer
                                                                                            from '../components/Comments/CommentsContainer'
 import {showModal, addComment, downvoteReport, upvoteReport, sortByDate, sortByPopularity} from '../actions'
+import {upvoteFetch, downvoteFetch} from '../adapter/adapter'
 
 const styles = {
 	mainGrid: {
@@ -63,17 +63,7 @@ class ReportShow extends Component {
 			this.props.showModal()
 		}
 		else {
-			fetch('http://localhost:3000/report_vote', {
-				method:  'POST',
-				headers: {
-					"Content-Type": "application/json",
-					"Accept":       "application/json"
-				},
-				body:    JSON.stringify({
-					vote:     'up',
-					reportId: id
-				})
-			});
+			upvoteFetch(id)
 			this.props.upvoteReport(id)
 		}
 	};
@@ -83,17 +73,7 @@ class ReportShow extends Component {
 			this.props.showModal()
 		}
 		else {
-			fetch('http://localhost:3000/report_vote', {
-				method:  'POST',
-				headers: {
-					"Content-Type": "application/json",
-					"Accept":       "application/json"
-				},
-				body:    JSON.stringify({
-					vote:     'down',
-					reportId: id
-				})
-			});
+			downvoteFetch(id)
 			this.props.downvoteReport(id)
 		}
 	};

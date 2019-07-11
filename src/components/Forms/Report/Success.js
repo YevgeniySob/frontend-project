@@ -20,7 +20,7 @@ class Success extends Component{
 						<h2 className="ui teal image header">
 							{/*<img src="assets/images/logo.png" className="image" />*/}
 							<div className="content">
-								<Header as='h2'>
+								<Header as='h1'>
 									Details are Successfully saved
 								</Header>
 							</div>
