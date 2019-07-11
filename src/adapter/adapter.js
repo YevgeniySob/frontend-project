@@ -12,10 +12,6 @@ export const headers = {
 	"Content-Type": "application/json"
 };
 
-const get = (url) => {
-	return fetch(url).then(r => r.json())
-};
-
 const post = (url, params) => {
 	return fetch(url, {
 		method: 'POST',
@@ -30,10 +26,6 @@ export const fetch_address_api = address => {
 };
 
 // Main API functions
-export const fetch_api = route => {
-	return fetch(API_URL + route).then(r => r.json())
-};
-
 const createReport = (report, userId) => {
 	return post(`${API_URL}/new_report`, {...report, userId})
 };
