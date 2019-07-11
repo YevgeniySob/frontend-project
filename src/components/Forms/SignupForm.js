@@ -8,6 +8,7 @@ import Homer                from '../../png/animated_homer_simpson.gif'
 // import Cat                  from '../png/blue_cat.gif'
 import {Link, withRouter}               from "react-router-dom";
 import { signup }           from '../../actions'
+import {signupForm} from '../../adapter/adapter'
 
 const styles = {
 	form: {
@@ -35,17 +36,7 @@ class SignupForm extends Component {
 
 	handleSubmit = e => {
 		e.preventDefault();
-		fetch('http://localhost:3000/signup', {
-			method: 'POST',
-			headers: {
-				Accept: 'application/json',
-				'content-type': 'application/json'
-			},
-			body: JSON.stringify({
-				user: this.state
-			})
-		})
-			.then(r => r.json())
+		signupForm(this.state)
 			.then(data => {
 				if (!data.errors) {
 					const { token, user } = data;

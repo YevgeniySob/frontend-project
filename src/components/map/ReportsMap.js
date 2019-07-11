@@ -38,7 +38,6 @@ class ReportsMap extends Component {
 	};
 
 	renderReports = () => {
-		// debugger
 		console.log('rendering report on map', this.props.reports);
 		return this.props.reports.map(report => {
 			if (report.report_geolocation) {
